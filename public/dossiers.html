@@ -30,10 +30,10 @@
       <div class="hero-copy">
         <p class="eyebrow">Dossiers</p>
         <h1>Staff dossiers</h1>
-        <p>Voeg waarschuwingen, notities, bans, ontslagen en opvolging toe. Alles wordt lokaal opgeslagen in de staff backend.</p>
+        <p>Voeg waarschuwingen, bans, klachten, gesprekken, bewijslinks en interne notities toe. Alles wordt via de staff backend opgeslagen.</p>
         
       </div>
-      <div class="metric-grid"><div><span>Status</span><strong>Werkend</strong></div><div><span>Opslag</span><strong>Lokaal</strong></div></div>
+      <div class="metric-grid"><div><span>Status</span><strong>Werkend</strong></div><div><span>Opslag</span><strong>Supabase</strong></div></div>
     </div>
   </section>
     <section class="container section">
@@ -43,16 +43,26 @@
           <div class="form-grid">
             <label><span>Naam speler</span><input name="playerName" required placeholder="Naam of karakter" /></label>
             <label><span>Discord ID</span><input name="discordId" placeholder="Optioneel" /></label>
-            <label><span>Type</span><select name="category"><option>Notitie</option><option>Waarschuwing</option><option>Ban</option><option>Ontslag</option><option>Refund</option><option>Overig</option></select></label>
+            <label><span>Persoonstype</span><select name="subjectType"><option>Speler</option><option>Stafflid</option><option>Sollicitant</option><option>Gang</option></select></label>
+            <label><span>Type</span><select name="category"><option>Notitie</option><option>Waarschuwing</option><option>Ban</option><option>Klacht</option><option>Gesprek</option><option>Opgelost</option><option>Refund</option><option>Overig</option></select></label>
             <label><span>Prioriteit</span><select name="severity"><option>Laag</option><option>Middel</option><option>Hoog</option><option>Kritiek</option></select></label>
             <label><span>Status</span><select name="status"><option>Open</option><option>In behandeling</option><option>Gesloten</option></select></label>
+            <label><span>Toegewezen aan</span><input name="assignedTo" placeholder="Stafflid of team" /></label>
+            <label><span>Tags</span><input name="tags" placeholder="Waarschuwing, Ban, Klacht" /></label>
           </div>
           <label><span>Beschrijving</span><textarea name="description" required rows="5" placeholder="Wat is er gebeurd?"></textarea></label>
+          <label><span>Bewijslinks</span><textarea name="evidenceLinks" rows="3" placeholder="Een link per regel naar clips, screenshots of tickets"></textarea></label>
+          <label><span>Interne notities</span><textarea name="notes" rows="3" placeholder="Alleen voor staff zichtbaar"></textarea></label>
           <label><span>Actie / opvolging</span><textarea name="action" rows="3" placeholder="Welke actie is genomen of nodig?"></textarea></label>
           <div class="form-actions"><button class="button" type="submit">Dossier opslaan</button><span data-dossier-feedback></span></div>
         </form>
         <div class="dossier-list-wrap staff-card">
-          <div class="staff-card-title"><span class="staff-card-icon">▤</span>Alle dossiers</div>
+          <div class="staff-card-title"><span class="staff-card-icon">=</span>Alle dossiers</div>
+          <div class="dossier-filters" data-dossier-filters>
+            <input type="search" data-dossier-search placeholder="Zoek naam, Discord ID, tag of tekst" />
+            <select data-dossier-status><option value="">Alle statussen</option><option>Open</option><option>In behandeling</option><option>Gesloten</option></select>
+            <select data-dossier-category><option value="">Alle types</option><option>Notitie</option><option>Waarschuwing</option><option>Ban</option><option>Klacht</option><option>Gesprek</option><option>Opgelost</option><option>Refund</option><option>Overig</option></select>
+          </div>
           <div class="dossier-list" data-dossier-list>
             <div class="notice-panel"><h3>Dossiers laden</h3><p>Een moment.</p></div>
           </div>

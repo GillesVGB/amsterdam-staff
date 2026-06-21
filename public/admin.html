@@ -4,72 +4,241 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Beheer | Amsterdam Roleplay Staff</title>
-  <meta name="description" content="Amsterdam Roleplay staff portaal met dashboard, regels, functies, dossiers, support en tools." />
+  <meta name="description" content="Amsterdam Roleplay staff beheer voor dossiers, profielen, taken, sollicitaties en logs." />
   <link rel="icon" type="image/png" href="assets/logo-amsterdam-roleplay.png" />
   <link rel="stylesheet" href="style.css" />
 </head>
-<body class="" data-page="admin.html">
-  
+<body data-page="admin.html">
   <header class="portal-header">
     <nav class="portal-nav container">
       <a class="brand" href="dashboard.html">
-    <img src="assets/logo-amsterdam-roleplay.png" alt="" />
-    <span><strong>Amsterdam Roleplay</strong><small>Staff Portaal</small></span>
-  </a>
+        <img src="assets/logo-amsterdam-roleplay.png" alt="" />
+        <span><strong>Amsterdam Roleplay</strong><small>Staff Portaal</small></span>
+      </a>
       <div class="top-links">
         <a href="https://overheid.amsterdamrp.store/overheid">Overheid</a>
         <a href="https://amsterdamrp.store/">Hoofdsite</a>
         <a href="/api/staff/auth/logout">Uitloggen</a>
       </div>
     </nav>
-    <div class="subnav container"><a href="dashboard.html">Dashboard</a><a href="regels.html">Regels</a><a href="functies.html">Functies</a><a href="team.html">Team</a><a href="dossiers.html">Dossiers</a><a href="support.html">Support</a><a href="wapens.html">Wapens</a><a href="onderwereld.html">Onderwereld</a><a href="admin.html" class="is-active">Beheer</a></div>
+    <div class="subnav container"><a href="dashboard.html">Dashboard</a><a href="regels.html">Regels</a><a href="functies.html">Functies</a><a href="team.html">Team</a><a href="dossiers.html">Dossiers</a><a href="tickets.html">Tickets</a><a href="support.html">Support</a><a href="wapens.html">Wapens</a><a href="onderwereld.html">Onderwereld</a><a href="admin.html" class="is-active">Beheer</a></div>
   </header>
   <main>
     <section class="hero-panel">
-    <div class="container hero-grid">
-      <div class="hero-copy">
-        <p class="eyebrow">Beheer</p>
-        <h1>Staff beheer</h1>
-        <p>Een centraal beheerpanel voor status, snelle acties, dossiers en deploy-informatie.</p>
-        
+      <div class="container hero-grid">
+        <div class="hero-copy">
+          <p class="eyebrow">Beheer</p>
+          <h1>Staff beheer</h1>
+          <p>Staffleden beheren, dossiers bekijken, functies aanpassen, regels opvolgen, taken verdelen en logs controleren.</p>
+        </div>
+        <div class="metric-grid" data-admin-summary>
+          <div><span>Status</span><strong>Laden</strong></div>
+          <div><span>Opslag</span><strong>Supabase</strong></div>
+          <div><span>Modules</span><strong>8</strong></div>
+        </div>
       </div>
-      <div class="metric-grid"><div><span>Status</span><strong>Actief</strong></div><div><span>Toegang</span><strong>Staff</strong></div><div><span>Modules</span><strong>6</strong></div></div>
-    </div>
-  </section>
+    </section>
+
     <section class="container section">
       <div class="admin-grid">
         <article class="staff-card">
-          <div class="staff-card-title"><span class="staff-card-icon">●</span>Systeemstatus</div>
+          <div class="staff-card-title"><span class="staff-card-icon">*</span>Systeemstatus</div>
           <div class="admin-status-list">
             <div><span>Discord login</span><strong>Actief</strong><p>OAuth controleert toegang via de staffrol.</p></div>
-            <div><span>Teamlijst</span><strong>Live</strong><p>Wordt opgehaald via de Discord bot en korte cache.</p></div>
-            <div><span>Dossiers</span><strong>Werkend</strong><p>Opslag loopt via de staff backend.</p></div>
+            <div><span>Teamlijst</span><strong>Live sync</strong><p>Wordt opgehaald via Discord botrollen en korte cache.</p></div>
+            <div><span>Opslag</span><strong>Supabase</strong><p>Dossiers, profielen, taken, sollicitaties en logs staan in de database.</p></div>
           </div>
         </article>
         <article class="staff-card">
-          <div class="staff-card-title"><span class="staff-card-icon">↗</span>Snelle acties</div>
+          <div class="staff-card-title"><span class="staff-card-icon">+</span>Snelle acties</div>
           <div class="admin-actions">
             <a class="button" href="dossiers.html">Dossiers beheren</a>
+            <a class="button secondary" href="tickets.html">Tickets beheren</a>
             <a class="button secondary" href="team.html">Team bekijken</a>
             <a class="button secondary" href="functies.html">Functies openen</a>
             <a class="button secondary" href="regels.html">Regels openen</a>
           </div>
         </article>
         <article class="staff-card">
-          <div class="staff-card-title"><span class="staff-card-icon">⚙</span>Render checklist</div>
+          <div class="staff-card-title"><span class="staff-card-icon">#</span>Render checklist</div>
           <ul class="staff-list staff-functie-perms">
-            <li><span class="staff-angle">›</span>Runtime staat op Node.</li>
-            <li><span class="staff-angle">›</span>Start command is npm start.</li>
-            <li><span class="staff-angle">›</span>STAFF_PUBLIC_URL gebruikt de juiste Render URL.</li>
-            <li><span class="staff-angle">›</span>Discord redirect URI staat exact juist.</li>
+            <li><span class="staff-angle">&gt;</span>Runtime staat op Node.</li>
+            <li><span class="staff-angle">&gt;</span>Start command is npm start.</li>
+            <li><span class="staff-angle">&gt;</span>STAFF_PUBLIC_URL gebruikt de juiste domeinnaam.</li>
+            <li><span class="staff-angle">&gt;</span>Discord redirect URI staat exact juist.</li>
+            <li><span class="staff-angle">&gt;</span>SUPABASE_URL en SUPABASE_SECRET_KEY staan alleen in Render env.</li>
           </ul>
         </article>
         <article class="staff-card">
-          <div class="staff-card-title"><span class="staff-card-icon">◆</span>Veiligheid</div>
-          <p class="admin-note">Zet secrets alleen in Render Environment Variables. Commit nooit .env.local of bot tokens naar GitHub.</p>
+          <div class="staff-card-title"><span class="staff-card-icon">!</span>Veiligheid</div>
+          <p class="admin-note">Zet secrets alleen in Render Environment Variables. Commit nooit .env.local, bot tokens of Supabase secret keys naar GitHub.</p>
         </article>
       </div>
-    </section></main>
+    </section>
+
+    <section class="container section slim">
+      <div class="section-head compact">
+        <p class="eyebrow">Staffleden beheren</p>
+        <h2>Staff profielpagina's</h2>
+      </div>
+      <div class="admin-module-grid">
+        <form class="staff-card admin-form" data-admin-form="profiles">
+          <div class="staff-card-title"><span class="staff-card-icon">+</span>Profiel toevoegen</div>
+          <div class="form-grid">
+            <label><span>Naam</span><input name="displayName" required placeholder="Staffnaam" /></label>
+            <label><span>Discord ID</span><input name="discordId" placeholder="Optioneel" /></label>
+            <label><span>Team</span><select name="team"><option>Staff Team</option><option>Hogerop Team</option><option>Bestuur Team</option><option>Beheer Team</option><option>Eigenaar</option></select></label>
+            <label><span>Functie</span><input name="functionName" placeholder="Moderator, Beheer, ..." /></label>
+            <label><span>Activiteit</span><select name="activity"><option>Actief</option><option>Beperkt actief</option><option>Afwezig</option><option>In opleiding</option></select></label>
+            <label><span>Tags</span><input name="tags" placeholder="Support, Events, Sollicitaties" /></label>
+          </div>
+          <label><span>Interne notities</span><textarea name="notes" rows="4" placeholder="Notities voor beheer"></textarea></label>
+          <div class="form-actions"><button class="button" type="submit">Profiel opslaan</button><span data-admin-feedback="profiles"></span></div>
+        </form>
+        <div class="staff-card">
+          <div class="staff-card-title"><span class="staff-card-icon">=</span>Profielen</div>
+          <div class="record-grid" data-admin-list="profiles"><p class="staff-empty">Profielen laden...</p></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="container section slim">
+      <div class="section-head compact">
+        <p class="eyebrow">Taken & ticketsysteem</p>
+        <h2>Werk verdelen aan staffleden</h2>
+      </div>
+      <div class="admin-module-grid">
+        <form class="staff-card admin-form" data-admin-form="tasks">
+          <div class="staff-card-title"><span class="staff-card-icon">+</span>Taak toevoegen</div>
+          <div class="form-grid">
+            <label><span>Titel</span><input name="title" required placeholder="Ticket, klacht of opdracht" /></label>
+            <label><span>Type</span><select name="type"><option>Support</option><option>Sollicitatie</option><option>Klacht</option><option>Evenement</option><option>Onderwereld</option><option>Overheid</option></select></label>
+            <label><span>Toegewezen aan</span><input name="assignee" placeholder="Stafflid of team" /></label>
+            <label><span>Prioriteit</span><select name="priority"><option>Normaal</option><option>Hoog</option><option>Kritiek</option><option>Laag</option></select></label>
+            <label><span>Status</span><select name="status"><option>Open</option><option>Bezig</option><option>Wachten</option><option>Gesloten</option></select></label>
+            <label><span>Deadline</span><input name="dueDate" placeholder="Bijv. vandaag 20:00" /></label>
+          </div>
+          <label><span>Beschrijving</span><textarea name="description" rows="4" placeholder="Wat moet er gebeuren?"></textarea></label>
+          <label><span>Tags</span><input name="tags" placeholder="ticket, support, klacht" /></label>
+          <div class="form-actions"><button class="button" type="submit">Taak opslaan</button><span data-admin-feedback="tasks"></span></div>
+        </form>
+        <div class="staff-card">
+          <div class="staff-card-title"><span class="staff-card-icon">=</span>Taken</div>
+          <div class="record-grid" data-admin-list="tasks"><p class="staff-empty">Taken laden...</p></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="container section slim">
+      <div class="section-head compact">
+        <p class="eyebrow">Ticketsysteem</p>
+        <h2>Support en klachten opvolgen</h2>
+      </div>
+      <div class="admin-module-grid">
+        <form class="staff-card admin-form" data-admin-form="tickets">
+          <div class="staff-card-title"><span class="staff-card-icon">+</span>Ticket toevoegen</div>
+          <div class="form-grid">
+            <label><span>Titel</span><input name="title" required placeholder="Ticket of melding" /></label>
+            <label><span>Aanvrager</span><input name="requester" placeholder="Naam speler/staff" /></label>
+            <label><span>Discord ID</span><input name="discordId" /></label>
+            <label><span>Categorie</span><select name="category"><option>Support</option><option>Klacht</option><option>Sollicitatie</option><option>Evenement</option><option>Onderwereld</option><option>Overheid</option></select></label>
+            <label><span>Toegewezen aan</span><input name="assignee" placeholder="Stafflid of team" /></label>
+            <label><span>Prioriteit</span><select name="priority"><option>Normaal</option><option>Hoog</option><option>Kritiek</option><option>Laag</option></select></label>
+            <label><span>Status</span><select name="status"><option>Open</option><option>Bezig</option><option>Wachten</option><option>Gesloten</option></select></label>
+          </div>
+          <label><span>Beschrijving</span><textarea name="description" rows="4" placeholder="Wat moet staff doen?"></textarea></label>
+          <label><span>Bewijslinks</span><textarea name="evidenceLinks" rows="3" placeholder="Een link per regel"></textarea></label>
+          <div class="form-actions"><button class="button" type="submit">Ticket opslaan</button><span data-admin-feedback="tickets"></span></div>
+        </form>
+        <div class="staff-card">
+          <div class="staff-card-title"><span class="staff-card-icon">=</span>Tickets</div>
+          <div class="dossier-filters">
+            <input type="search" data-ticket-search placeholder="Zoek ticket, aanvrager, status of assignee" />
+            <select data-ticket-status><option value="">Alle statussen</option><option>Open</option><option>Bezig</option><option>Wachten</option><option>Gesloten</option></select>
+          </div>
+          <div class="record-grid" data-admin-list="tickets"><p class="staff-empty">Tickets laden...</p></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="container section slim">
+      <div class="section-head compact">
+        <p class="eyebrow">Sollicitatie/opleiding paneel</p>
+        <h2>Kandidaten opvolgen</h2>
+      </div>
+      <div class="admin-module-grid">
+        <form class="staff-card admin-form" data-admin-form="applications">
+          <div class="staff-card-title"><span class="staff-card-icon">+</span>Sollicitatie toevoegen</div>
+          <div class="form-grid">
+            <label><span>Kandidaat</span><input name="applicantName" required placeholder="Naam kandidaat" /></label>
+            <label><span>Discord ID</span><input name="discordId" /></label>
+            <label><span>Status</span><select name="status"><option>Nieuw</option><option>In review</option><option>Gesprek gepland</option><option>In opleiding</option><option>Aangenomen</option><option>Afgekeurd</option></select></label>
+            <label><span>Reviewer</span><input name="reviewer" placeholder="Stafflid" /></label>
+            <label><span>Gesprek</span><input name="interviewAt" placeholder="Datum/tijd" /></label>
+            <label><span>Opleiding</span><input name="training" placeholder="Discord, TX, tickets" /></label>
+          </div>
+          <label><span>Notities</span><textarea name="notes" rows="4" placeholder="Gesprek, beoordeling, opleiding"></textarea></label>
+          <div class="form-actions"><button class="button" type="submit">Sollicitatie opslaan</button><span data-admin-feedback="applications"></span></div>
+        </form>
+        <div class="staff-card">
+          <div class="staff-card-title"><span class="staff-card-icon">=</span>Sollicitaties</div>
+          <div class="record-grid" data-admin-list="applications"><p class="staff-empty">Sollicitaties laden...</p></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="container section slim">
+      <div class="section-head compact">
+        <p class="eyebrow">Regels beheren</p>
+        <h2>Extra staffregels toevoegen</h2>
+      </div>
+      <div class="admin-module-grid">
+        <form class="staff-card admin-form" data-admin-form="rules">
+          <div class="staff-card-title"><span class="staff-card-icon">+</span>Regel toevoegen</div>
+          <div class="form-grid">
+            <label><span>Sectie</span><input name="section" placeholder="Algemeen, Support, TX, ..." /></label>
+            <label><span>Titel</span><input name="title" required placeholder="Regeltitel" /></label>
+            <label><span>Status</span><select name="status"><option>Actief</option><option>Concept</option><option>Inactief</option></select></label>
+            <label><span>Tags</span><input name="tags" placeholder="support, tx, discord" /></label>
+          </div>
+          <label><span>Inhoud</span><textarea name="content" required rows="4" placeholder="Wat is de regel?"></textarea></label>
+          <label><span>Sanctie / gevolg</span><textarea name="sanction" rows="3" placeholder="Welke sanctie hoort erbij?"></textarea></label>
+          <div class="form-actions"><button class="button" type="submit">Regel opslaan</button><span data-admin-feedback="rules"></span></div>
+        </form>
+        <div class="staff-card">
+          <div class="staff-card-title"><span class="staff-card-icon">=</span>Beheerregels</div>
+          <div class="record-grid" data-admin-list="rules"><p class="staff-empty">Regels laden...</p></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="container section slim">
+      <div class="section-head compact">
+        <p class="eyebrow">Activiteit</p>
+        <h2>Staffactiviteit en meldingen</h2>
+      </div>
+      <div class="admin-module-grid">
+        <div class="staff-card">
+          <div class="staff-card-title"><span class="staff-card-icon">=</span>Activiteit</div>
+          <div class="record-grid compact" data-admin-activity><p class="staff-empty">Activiteit laden...</p></div>
+        </div>
+        <div class="staff-card">
+          <div class="staff-card-title"><span class="staff-card-icon">!</span>Meldingen</div>
+          <div class="record-grid compact" data-admin-notifications><p class="staff-empty">Meldingen laden...</p></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="container section slim">
+      <div class="section-head compact">
+        <p class="eyebrow">Logs</p>
+        <h2>Wijzigingen in beheer</h2>
+      </div>
+      <div class="staff-card">
+        <div class="record-grid compact" data-admin-logs><p class="staff-empty">Logs laden...</p></div>
+      </div>
+    </section>
+  </main>
   <footer class="portal-footer"><div class="container footer-row"><span>Amsterdam Roleplay Staff Portaal</span><span>Interne omgeving voor staff.</span></div></footer>
   <script src="staff.js"></script>
 </body>

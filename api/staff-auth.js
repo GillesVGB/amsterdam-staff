@@ -115,6 +115,28 @@ function hasAccess(roleIds, config) {
   return config.allowedRoleIds.some((roleId) => roles.has(roleId));
 }
 
+function isAdminSession(session) {
+  if (!session) return false;
+  const adminRoleIds = splitIds(process.env.STAFF_ADMIN_ROLE_IDS);
+  if (!adminRoleIds.length) return true;
+  const roles = new Set(session.roles || []);
+  return adminRoleIds.some((roleId) => roles.has(roleId));
+}
+
+function hasPermission(session, permission) {
+  if (isAdminSession(session)) return true;
+  const key = `STAFF_PERMISSION_${String(permission || "").toUpperCase()}_ROLE_IDS`;
+  const permissionRoleIds = splitIds(process.env[key]);
+  if (!permissionRoleIds.length) return false;
+  const roles = new Set(session?.roles || []);
+  return permissionRoleIds.some((roleId) => roles.has(roleId));
+}
+
+function getPermissions(session) {
+  const permissions = ["dossiers", "tickets", "applications", "profiles", "rules", "settings", "logs"];
+  return Object.fromEntries(permissions.map((permission) => [permission, hasPermission(session, permission)]));
+}
+
 function sanitizeNext(next) {
   if (typeof next === "string" && next.startsWith("/staff/") && !next.startsWith("//")) {
     return next;
@@ -264,6 +286,8 @@ function handleMe(req, res) {
   sendJson(res, 200, {
     loggedIn: true,
     user: session.user,
+    isAdmin: isAdminSession(session),
+    permissions: getPermissions(session),
   });
 }
 
@@ -323,6 +347,9 @@ function requireStaffAccess(req, res, url) {
 
 module.exports = {
   getSession,
+  getPermissions,
   handle,
+  hasPermission,
+  isAdminSession,
   requireStaffAccess,
 };

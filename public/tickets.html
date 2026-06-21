@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Tickets | Amsterdam Roleplay Staff</title>
+  <meta name="description" content="Amsterdam Roleplay staff ticketdashboard." />
+  <link rel="icon" type="image/png" href="assets/logo-amsterdam-roleplay.png" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body data-page="tickets.html">
+  <header class="portal-header">
+    <nav class="portal-nav container">
+      <a class="brand" href="dashboard.html"><img src="assets/logo-amsterdam-roleplay.png" alt="" /><span><strong>Amsterdam Roleplay</strong><small>Staff Portaal</small></span></a>
+      <div class="top-links">
+        <a href="https://overheid.amsterdamrp.store/overheid">Overheid</a>
+        <a href="https://amsterdamrp.store/">Hoofdsite</a>
+        <a href="/api/staff/auth/logout">Uitloggen</a>
+      </div>
+    </nav>
+    <div class="subnav container"><a href="dashboard.html">Dashboard</a><a href="regels.html">Regels</a><a href="functies.html">Functies</a><a href="team.html">Team</a><a href="dossiers.html">Dossiers</a><a href="support.html">Support</a><a href="tickets.html" class="is-active">Tickets</a><a href="wapens.html">Wapens</a><a href="onderwereld.html">Onderwereld</a><a href="admin.html">Beheer</a></div>
+  </header>
+  <main>
+    <section class="hero-panel">
+      <div class="container hero-grid">
+        <div class="hero-copy">
+          <p class="eyebrow">Ticket dashboard</p>
+          <h1>Taken & tickets</h1>
+          <p>Verdeel support, klachten, sollicitaties, evenementen en meldingen aan staffleden met prioriteit en bewijslinks.</p>
+        </div>
+        <div class="metric-grid"><div><span>Status</span><strong>Live</strong></div><div><span>Opslag</span><strong>Supabase</strong></div></div>
+      </div>
+    </section>
+    <section class="container section">
+      <div class="admin-module-grid">
+        <form class="staff-card admin-form" data-admin-form="tickets">
+          <div class="staff-card-title"><span class="staff-card-icon">+</span>Ticket toevoegen</div>
+          <div class="form-grid">
+            <label><span>Titel</span><input name="title" required placeholder="Waar gaat het over?" /></label>
+            <label><span>Aanvrager</span><input name="requester" placeholder="Naam speler/staff" /></label>
+            <label><span>Discord ID</span><input name="discordId" /></label>
+            <label><span>Categorie</span><select name="category"><option>Support</option><option>Klacht</option><option>Sollicitatie</option><option>Evenement</option><option>Onderwereld</option><option>Overheid</option></select></label>
+            <label><span>Toegewezen aan</span><input name="assignee" placeholder="Stafflid of team" /></label>
+            <label><span>Prioriteit</span><select name="priority"><option>Normaal</option><option>Hoog</option><option>Kritiek</option><option>Laag</option></select></label>
+            <label><span>Status</span><select name="status"><option>Open</option><option>Bezig</option><option>Wachten</option><option>Gesloten</option></select></label>
+          </div>
+          <label><span>Beschrijving</span><textarea name="description" rows="4" placeholder="Wat moet staff doen?"></textarea></label>
+          <label><span>Bewijslinks</span><textarea name="evidenceLinks" rows="3" placeholder="Een link per regel"></textarea></label>
+          <div class="form-actions"><button class="button" type="submit">Ticket opslaan</button><span data-admin-feedback="tickets"></span></div>
+        </form>
+        <div class="staff-card">
+          <div class="staff-card-title"><span class="staff-card-icon">=</span>Tickets</div>
+          <div class="dossier-filters">
+            <input type="search" data-ticket-search placeholder="Zoek ticket, aanvrager, status of assignee" />
+            <select data-ticket-status><option value="">Alle statussen</option><option>Open</option><option>Bezig</option><option>Wachten</option><option>Gesloten</option></select>
+          </div>
+          <div class="record-grid" data-admin-list="tickets"><p class="staff-empty">Tickets laden...</p></div>
+        </div>
+      </div>
+    </section>
+  </main>
+  <footer class="portal-footer"><div class="container footer-row"><span>Amsterdam Roleplay Staff Portaal</span><span>Ticketdashboard.</span></div></footer>
+  <script src="staff.js"></script>
+</body>
+</html>
