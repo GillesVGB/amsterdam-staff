@@ -22,7 +22,7 @@
         <a href="/api/staff/auth/logout">Uitloggen</a>
       </div>
     </nav>
-    <div class="subnav container"><a href="dashboard.html">Dashboard</a><a href="regels.html">Regels</a><a href="functies.html">Functies</a><a href="team.html">Team</a><a href="dossiers.html">Dossiers</a><a href="support.html">Support</a><a href="wapens.html">Wapens</a><a href="onderwereld.html">Onderwereld</a></div>
+    <div class="subnav container"><a href="dashboard.html">Dashboard</a><a href="regels.html">Regels</a><a href="functies.html">Functies</a><a href="team.html">Team</a><a href="dossiers.html">Dossiers</a><a href="support.html">Support</a><a href="wapens.html">Wapens</a><a href="onderwereld.html">Onderwereld</a><a href="admin.html" class="is-active">Beheer</a></div>
   </header>
   <main>
     <section class="hero-panel">
@@ -30,14 +30,45 @@
       <div class="hero-copy">
         <p class="eyebrow">Beheer</p>
         <h1>Staff beheer</h1>
-        <p>Beheerpagina voor toekomstige content-aanpassingen, maintenance en staffdata.</p>
+        <p>Een centraal beheerpanel voor status, snelle acties, dossiers en deploy-informatie.</p>
         
       </div>
-      <div class="metric-grid"><div><span>Status</span><strong>Voorbereid</strong></div><div><span>Toegang</span><strong>Staff</strong></div></div>
+      <div class="metric-grid"><div><span>Status</span><strong>Actief</strong></div><div><span>Toegang</span><strong>Staff</strong></div><div><span>Modules</span><strong>6</strong></div></div>
     </div>
   </section>
     <section class="container section">
-      <div class="notice-panel"><h3>Beheer wordt later gekoppeld</h3><p>De basis staat klaar. Een echte beheer-backend kan later worden toegevoegd.</p></div>
+      <div class="admin-grid">
+        <article class="staff-card">
+          <div class="staff-card-title"><span class="staff-card-icon">●</span>Systeemstatus</div>
+          <div class="admin-status-list">
+            <div><span>Discord login</span><strong>Actief</strong><p>OAuth controleert toegang via de staffrol.</p></div>
+            <div><span>Teamlijst</span><strong>Live</strong><p>Wordt opgehaald via de Discord bot en korte cache.</p></div>
+            <div><span>Dossiers</span><strong>Werkend</strong><p>Opslag loopt via de staff backend.</p></div>
+          </div>
+        </article>
+        <article class="staff-card">
+          <div class="staff-card-title"><span class="staff-card-icon">↗</span>Snelle acties</div>
+          <div class="admin-actions">
+            <a class="button" href="dossiers.html">Dossiers beheren</a>
+            <a class="button secondary" href="team.html">Team bekijken</a>
+            <a class="button secondary" href="functies.html">Functies openen</a>
+            <a class="button secondary" href="regels.html">Regels openen</a>
+          </div>
+        </article>
+        <article class="staff-card">
+          <div class="staff-card-title"><span class="staff-card-icon">⚙</span>Render checklist</div>
+          <ul class="staff-list staff-functie-perms">
+            <li><span class="staff-angle">›</span>Runtime staat op Node.</li>
+            <li><span class="staff-angle">›</span>Start command is npm start.</li>
+            <li><span class="staff-angle">›</span>STAFF_PUBLIC_URL gebruikt de juiste Render URL.</li>
+            <li><span class="staff-angle">›</span>Discord redirect URI staat exact juist.</li>
+          </ul>
+        </article>
+        <article class="staff-card">
+          <div class="staff-card-title"><span class="staff-card-icon">◆</span>Veiligheid</div>
+          <p class="admin-note">Zet secrets alleen in Render Environment Variables. Commit nooit .env.local of bot tokens naar GitHub.</p>
+        </article>
+      </div>
     </section></main>
   <footer class="portal-footer"><div class="container footer-row"><span>Amsterdam Roleplay Staff Portaal</span><span>Interne omgeving voor staff.</span></div></footer>
   <script src="staff.js"></script>
