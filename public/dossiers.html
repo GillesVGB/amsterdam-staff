@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Dossiers | Amsterdam Roleplay Staff</title>
+  <meta name="description" content="Amsterdam Roleplay staff portaal met dashboard, regels, functies, dossiers, support en tools." />
+  <link rel="icon" type="image/png" href="assets/logo-amsterdam-roleplay.png" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body class="" data-page="dossiers.html">
+  
+  <header class="portal-header">
+    <nav class="portal-nav container">
+      <a class="brand" href="dashboard.html">
+    <img src="assets/logo-amsterdam-roleplay.png" alt="" />
+    <span><strong>Amsterdam Roleplay</strong><small>Staff Portaal</small></span>
+  </a>
+      <div class="top-links">
+        <a href="/overheid/">Overheid</a>
+        <a href="/">Hoofdsite</a>
+        <a href="/api/staff/auth/logout">Uitloggen</a>
+      </div>
+    </nav>
+    <div class="subnav container"><a href="dashboard.html">Dashboard</a><a href="regels.html">Regels</a><a href="functies.html">Functies</a><a href="team.html">Team</a><a href="dossiers.html" class="is-active">Dossiers</a><a href="support.html">Support</a><a href="wapens.html">Wapens</a><a href="onderwereld.html">Onderwereld</a></div>
+  </header>
+  <main>
+    <section class="hero-panel">
+    <div class="container hero-grid">
+      <div class="hero-copy">
+        <p class="eyebrow">Dossiers</p>
+        <h1>Staff dossiers</h1>
+        <p>Voeg waarschuwingen, notities, bans, ontslagen en opvolging toe. Alles wordt lokaal opgeslagen in de staff backend.</p>
+        
+      </div>
+      <div class="metric-grid"><div><span>Status</span><strong>Werkend</strong></div><div><span>Opslag</span><strong>Lokaal</strong></div></div>
+    </div>
+  </section>
+    <section class="container section">
+      <div class="dossier-layout">
+        <form class="dossier-form staff-card" data-dossier-form>
+          <div class="staff-card-title"><span class="staff-card-icon">+</span>Dossier toevoegen</div>
+          <div class="form-grid">
+            <label><span>Naam speler</span><input name="playerName" required placeholder="Naam of karakter" /></label>
+            <label><span>Discord ID</span><input name="discordId" placeholder="Optioneel" /></label>
+            <label><span>Type</span><select name="category"><option>Notitie</option><option>Waarschuwing</option><option>Ban</option><option>Ontslag</option><option>Refund</option><option>Overig</option></select></label>
+            <label><span>Prioriteit</span><select name="severity"><option>Laag</option><option>Middel</option><option>Hoog</option><option>Kritiek</option></select></label>
+            <label><span>Status</span><select name="status"><option>Open</option><option>In behandeling</option><option>Gesloten</option></select></label>
+          </div>
+          <label><span>Beschrijving</span><textarea name="description" required rows="5" placeholder="Wat is er gebeurd?"></textarea></label>
+          <label><span>Actie / opvolging</span><textarea name="action" rows="3" placeholder="Welke actie is genomen of nodig?"></textarea></label>
+          <div class="form-actions"><button class="button" type="submit">Dossier opslaan</button><span data-dossier-feedback></span></div>
+        </form>
+        <div class="dossier-list-wrap staff-card">
+          <div class="staff-card-title"><span class="staff-card-icon">▤</span>Alle dossiers</div>
+          <div class="dossier-list" data-dossier-list>
+            <div class="notice-panel"><h3>Dossiers laden</h3><p>Een moment.</p></div>
+          </div>
+        </div>
+      </div>
+    </section></main>
+  <footer class="portal-footer"><div class="container footer-row"><span>Amsterdam Roleplay Staff Portaal</span><span>Interne omgeving voor staff.</span></div></footer>
+  <script src="staff.js"></script>
+</body>
+</html>
