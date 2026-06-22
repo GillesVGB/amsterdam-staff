@@ -166,9 +166,6 @@ function emptyTeamGroups(config, roles = {}) {
 }
 
 async function handleRoles(req, res, url) {
-  const session = requireSession(req, res);
-  if (!session) return true;
-
   const config = getConfig();
   const ids = new Set(splitIds(url.searchParams.get("ids")));
   if (!config.botToken || !config.guildId) {
@@ -190,9 +187,6 @@ async function handleRoles(req, res, url) {
 }
 
 async function handleTeam(req, res) {
-  const session = requireSession(req, res);
-  if (!session) return true;
-
   const config = getConfig();
   if (!config.botToken || !config.guildId) {
     sendJson(res, 200, {
