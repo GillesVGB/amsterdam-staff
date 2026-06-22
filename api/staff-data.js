@@ -14,6 +14,8 @@ const TASK_FILE = path.join(DATA_DIR, "staff-tasks.json");
 const TICKET_FILE = path.join(DATA_DIR, "staff-tickets.json");
 const APPLICATION_FILE = path.join(DATA_DIR, "staff-applications.json");
 const RULE_FILE = path.join(DATA_DIR, "staff-rules.json");
+const WARNING_FILE = path.join(DATA_DIR, "staff-warnings.json");
+const MEETING_FILE = path.join(DATA_DIR, "staff-meetings.json");
 const NOTIFICATION_FILE = path.join(DATA_DIR, "staff-notifications.json");
 const LOG_FILE = path.join(DATA_DIR, "staff-logs.json");
 const SETTINGS_FILE = path.join(DATA_DIR, "staff-settings.json");
@@ -86,7 +88,7 @@ async function discordGet(pathname, config) {
 }
 
 function roleColor(role) {
-  if (!role || !role.color) return "#5865f2";
+  if (!role || !role.color) return "#36b8d0";
   return `#${Number(role.color).toString(16).padStart(6, "0")}`;
 }
 
@@ -158,7 +160,7 @@ function publicMember(member) {
 function emptyTeamGroups(config, roles = {}) {
   return config.teamGroups.map((group) => ({
     ...group,
-    role: roles[group.roleId] || { id: group.roleId, name: group.title, color: "#5865f2" },
+    role: roles[group.roleId] || { id: group.roleId, name: group.title, color: "#36b8d0" },
     members: [],
   }));
 }
@@ -215,7 +217,7 @@ async function handleTeam(req, res) {
 
       return {
         ...group,
-        role: roles[group.roleId] || { id: group.roleId, name: group.title, color: "#5865f2" },
+        role: roles[group.roleId] || { id: group.roleId, name: group.title, color: "#36b8d0" },
         members: groupMembers,
       };
     });
@@ -326,6 +328,8 @@ function collectionTypeForFile(file) {
   if (file === TICKET_FILE) return "tickets";
   if (file === APPLICATION_FILE) return "applications";
   if (file === RULE_FILE) return "rules";
+  if (file === WARNING_FILE) return "warnings";
+  if (file === MEETING_FILE) return "meetings";
   if (file === NOTIFICATION_FILE) return "notifications";
   if (file === LOG_FILE) return "logs";
   if (file === SETTINGS_FILE) return "settings";
@@ -624,6 +628,50 @@ function normalizeRule(body, session, existing = {}) {
   };
 }
 
+function normalizeWarning(body, session, existing = {}) {
+  const staffName = cleanField(body.staffName || body.displayName || body.name, 120);
+  const reason = cleanField(body.reason || body.description, 1800);
+  if (!staffName || !reason) throw new Error("Stafflid en reden zijn verplicht.");
+  const now = new Date().toISOString();
+  return {
+    id: existing.id || crypto.randomUUID(),
+    staffName,
+    discordId: cleanField(body.discordId, 40),
+    type: cleanField(body.type, 80) || "Waarschuwing",
+    severity: cleanField(body.severity, 40) || "Middel",
+    status: cleanField(body.status, 60) || "Open",
+    issuedBy: cleanField(body.issuedBy || session.user?.username, 120),
+    reason,
+    evidenceLinks: splitList(body.evidenceLinks || body.evidence, 10, 260),
+    notes: splitList(body.notes, 20, 500),
+    createdAt: existing.createdAt || now,
+    updatedAt: now,
+    createdBy: existing.createdBy || session.user,
+    updatedBy: session.user,
+  };
+}
+
+function normalizeMeeting(body, session, existing = {}) {
+  const title = cleanField(body.title, 180);
+  if (!title) throw new Error("Titel is verplicht.");
+  const now = new Date().toISOString();
+  return {
+    id: existing.id || crypto.randomUUID(),
+    title,
+    meetingAt: cleanField(body.meetingAt, 80),
+    chair: cleanField(body.chair || body.voorzitter, 120),
+    status: cleanField(body.status, 60) || "Concept",
+    participants: splitList(body.participants, 40, 120),
+    agenda: cleanField(body.agenda, 1800),
+    decisions: cleanField(body.decisions || body.besluiten, 2200),
+    actionItems: splitList(body.actionItems || body.actions, 20, 240),
+    createdAt: existing.createdAt || now,
+    updatedAt: now,
+    createdBy: existing.createdBy || session.user,
+    updatedBy: session.user,
+  };
+}
+
 async function handleCollection(req, res, url, options) {
   const session = options.permission ? requirePermission(req, res, options.permission) : requireAdmin(req, res);
   if (!session) return true;
@@ -693,13 +741,15 @@ async function handleAdminSummary(req, res) {
   const session = requirePermission(req, res, "logs");
   if (!session) return true;
 
-  const [dossiers, profiles, tasks, tickets, applications, rules, notifications, logs] = await Promise.all([
+  const [dossiers, profiles, tasks, tickets, applications, rules, warnings, meetings, notifications, logs] = await Promise.all([
     readDossiers(),
     readJsonFile(PROFILE_FILE, []),
     readJsonFile(TASK_FILE, []),
     readJsonFile(TICKET_FILE, []),
     readJsonFile(APPLICATION_FILE, []),
     readJsonFile(RULE_FILE, []),
+    readJsonFile(WARNING_FILE, []),
+    readJsonFile(MEETING_FILE, []),
     readJsonFile(NOTIFICATION_FILE, []),
     readJsonFile(LOG_FILE, []),
   ]);
@@ -717,19 +767,22 @@ async function handleAdminSummary(req, res) {
       applications: applications.length,
       openApplications: applications.filter((item) => !["Afgekeurd", "Aangenomen", "Gesloten"].includes(item.status)).length,
       rules: rules.length,
+      warnings: warnings.length,
+      openWarnings: warnings.filter((item) => !["Opgelost", "Gesloten", "Verwerkt"].includes(item.status)).length,
+      meetings: meetings.length,
       notifications: notifications.filter((item) => !item.read).length,
     },
     permissions: staffAuth.getPermissions(session),
-    activity: buildActivity({ dossiers, tasks, tickets, applications, logs }),
+    activity: buildActivity({ dossiers, tasks, tickets, applications, warnings, meetings, logs }),
     notifications: sortNewest(notifications).slice(0, 10),
     latestLogs: sortNewest(logs).slice(0, 12),
   });
   return true;
 }
 
-function buildActivity({ dossiers, tasks, tickets, applications, logs }) {
+function buildActivity({ dossiers, tasks, tickets, applications, warnings = [], meetings = [], logs }) {
   const byUser = {};
-  for (const item of [...dossiers, ...tasks, ...tickets, ...applications, ...logs]) {
+  for (const item of [...dossiers, ...tasks, ...tickets, ...applications, ...warnings, ...meetings, ...logs]) {
     const name = item.createdBy?.username || item.updatedBy?.username;
     if (!name) continue;
     byUser[name] ||= { name, actions: 0, dossiers: 0, tickets: 0, tasks: 0, applications: 0, lastActive: item.updatedAt || item.createdAt };
@@ -824,6 +877,25 @@ async function handle(req, res, url) {
     label: "Regel",
     title: (item) => item.title,
     normalize: normalizeRule,
+    permission: "rules",
+  });
+  if (url.pathname.startsWith("/api/staff/warnings")) return handleCollection(req, res, url, {
+    path: "/api/staff/warnings",
+    file: WARNING_FILE,
+    key: "warnings",
+    label: "Staffwaarschuwing",
+    title: (item) => item.staffName,
+    normalize: normalizeWarning,
+    permission: "dossiers",
+    notify: "warning",
+  });
+  if (url.pathname.startsWith("/api/staff/meetings")) return handleCollection(req, res, url, {
+    path: "/api/staff/meetings",
+    file: MEETING_FILE,
+    key: "meetings",
+    label: "Meetingnotulen",
+    title: (item) => item.title,
+    normalize: normalizeMeeting,
     permission: "rules",
   });
   if (url.pathname === "/api/staff/team" && req.method === "GET") return handleTeam(req, res);

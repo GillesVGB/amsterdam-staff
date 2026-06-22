@@ -77,7 +77,7 @@ async function enhanceRoleTags() {
       if (!role) return;
       tag.dataset.roleId = role.id;
       tag.title = "Discord role ID: " + role.id;
-      tag.style.setProperty("--role-color", role.color || "#5865f2");
+      tag.style.setProperty("--role-color", role.color || "#36b8d0");
       tag.classList.remove("staff-role-chip-unknown");
 
       const nameEl = tag.querySelector(".staff-role-name");
@@ -85,7 +85,7 @@ async function enhanceRoleTags() {
       const dotEl = tag.querySelector(".staff-role-dot");
       if (nameEl) nameEl.textContent = "| " + displayRoleName(role.name);
       if (idEl) idEl.textContent = role.id;
-      if (dotEl) dotEl.style.background = role.color || "#5865f2";
+      if (dotEl) dotEl.style.background = role.color || "#36b8d0";
     });
   } catch {
     // Tags blijven zichtbaar met de statische AMRP-rolnamen.
@@ -131,12 +131,12 @@ function makeRoleTag(role, fallbackName) {
   const tag = document.createElement("button");
   tag.type = "button";
   tag.className = "staff-role-chip";
-  tag.style.setProperty("--role-color", role?.color || "#5865f2");
+  tag.style.setProperty("--role-color", role?.color || "#36b8d0");
   if (role?.id) tag.dataset.roleId = role.id;
   tag.title = role?.id ? "Discord role ID: " + role.id : fallbackName || "Rol";
   const dot = document.createElement("span");
   dot.className = "staff-role-dot";
-  dot.style.background = role?.color || "#5865f2";
+  dot.style.background = role?.color || "#36b8d0";
   const text = document.createElement("span");
   text.className = "staff-role-chip-text";
   text.appendChild(textNode("span", "staff-role-name", "| " + displayRoleName(role?.name || fallbackName || "Rol")));
@@ -201,7 +201,7 @@ async function initTeamPage() {
       head.className = "staff-rank-head";
       const dot = document.createElement("span");
       dot.className = "staff-rank-dot";
-      dot.style.background = group.role?.color || "#8b5cf6";
+      dot.style.background = group.role?.color || "#36b8d0";
       head.appendChild(dot);
       head.appendChild(textNode("h3", "", group.title));
       head.appendChild(textNode("span", "staff-rank-meta", String(group.members.length) + " leden"));
@@ -493,6 +493,22 @@ const staffAdminCollections = {
     body: (item) => [item.content, item.sanction && "Sanctie: " + item.sanction].filter(Boolean).join("\n\n") || "Geen inhoud.",
     closeStatus: "Inactief",
   },
+  warnings: {
+    endpoint: "/api/staff/warnings",
+    key: "warnings",
+    title: (item) => item.staffName || "Staffwaarschuwing",
+    meta: (item) => [item.type, item.severity, item.status, item.issuedBy && "Door: " + item.issuedBy].filter(Boolean),
+    body: (item) => [item.reason, (item.notes || []).join("\n"), (item.evidenceLinks || []).length ? "Bewijs: " + item.evidenceLinks.join(", ") : ""].filter(Boolean).join("\n\n") || "Geen inhoud.",
+    closeStatus: "Opgelost",
+  },
+  meetings: {
+    endpoint: "/api/staff/meetings",
+    key: "meetings",
+    title: (item) => item.title || "Meeting",
+    meta: (item) => [item.status, item.meetingAt && "Moment: " + item.meetingAt, item.chair && "Voorzitter: " + item.chair].filter(Boolean),
+    body: (item) => [item.agenda && "Agenda: " + item.agenda, item.decisions && "Besluiten: " + item.decisions, (item.actionItems || []).length ? "Acties: " + item.actionItems.join(" | ") : "", (item.participants || []).length ? "Aanwezig: " + item.participants.join(", ") : ""].filter(Boolean).join("\n\n") || "Geen notulen.",
+    closeStatus: "Afgerond",
+  },
 };
 
 function filterAdminItems(type, items) {
@@ -567,6 +583,8 @@ async function loadAdminSummary() {
       ["Open taken", data.counts.openTasks],
       ["Open tickets", data.counts.openTickets],
       ["Sollicitaties", data.counts.openApplications],
+      ["Waarschuwingen", data.counts.openWarnings],
+      ["Meetings", data.counts.meetings],
       ["Regels", data.counts.rules],
       ["Meldingen", data.counts.notifications],
     ].forEach(([label, value]) => {
@@ -766,11 +784,12 @@ async function initProfilePage() {
   }
   const id = new URLSearchParams(window.location.search).get("id");
   try {
-    const [profilesData, dossiersData, tasksData, ticketsData] = await Promise.all([
+    const [profilesData, dossiersData, tasksData, ticketsData, warningsData] = await Promise.all([
       fetchStaffJson("/api/staff/profiles"),
       fetchStaffJson("/api/staff/dossiers"),
       fetchStaffJson("/api/staff/tasks"),
       fetchStaffJson("/api/staff/tickets"),
+      fetchStaffJson("/api/staff/warnings"),
     ]);
     const profile = (profilesData.profiles || []).find((item) => item.id === id);
     if (!profile) {
@@ -798,6 +817,7 @@ async function initProfilePage() {
       ["Dossiers", (dossiersData.dossiers || []).filter(matchRecord).map(renderDossierCard)],
       ["Taken", (tasksData.tasks || []).filter(matchRecord).map((item) => renderRecordCard("tasks", item))],
       ["Tickets", (ticketsData.tickets || []).filter(matchRecord).map((item) => renderRecordCard("tickets", item))],
+      ["Waarschuwingen", (warningsData.warnings || []).filter(matchRecord).map((item) => renderRecordCard("warnings", item))],
     ].forEach(([title, cards]) => {
       const section = document.createElement("section");
       section.className = "staff-card";

@@ -34,7 +34,7 @@
         <div class="metric-grid" data-admin-summary>
           <div><span>Status</span><strong>Laden</strong></div>
           <div><span>Opslag</span><strong>Supabase</strong></div>
-          <div><span>Modules</span><strong>8</strong></div>
+          <div><span>Modules</span><strong>10</strong></div>
         </div>
       </div>
     </section>
@@ -189,6 +189,34 @@
 
     <section class="container section slim">
       <div class="section-head compact">
+        <p class="eyebrow">Staff waarschuwingen</p>
+        <h2>Sancties los van spelerdossiers</h2>
+      </div>
+      <div class="admin-module-grid">
+        <form class="staff-card admin-form" data-admin-form="warnings">
+          <div class="staff-card-title"><span class="staff-card-icon">+</span>Waarschuwing toevoegen</div>
+          <div class="form-grid">
+            <label><span>Stafflid</span><input name="staffName" required placeholder="Naam stafflid" /></label>
+            <label><span>Discord ID</span><input name="discordId" /></label>
+            <label><span>Type</span><select name="type"><option>Waarschuwing</option><option>Gesprek</option><option>Schorsing</option><option>Functie-afname</option><option>Ontslagadvies</option></select></label>
+            <label><span>Ernst</span><select name="severity"><option>Laag</option><option>Middel</option><option>Hoog</option><option>Kritiek</option></select></label>
+            <label><span>Status</span><select name="status"><option>Open</option><option>In behandeling</option><option>Verwerkt</option><option>Opgelost</option></select></label>
+            <label><span>Uitgegeven door</span><input name="issuedBy" placeholder="Automatisch of naam" /></label>
+          </div>
+          <label><span>Reden</span><textarea name="reason" required rows="4" placeholder="Wat is er gebeurd?"></textarea></label>
+          <label><span>Bewijslinks</span><textarea name="evidenceLinks" rows="3" placeholder="Een link per regel"></textarea></label>
+          <label><span>Interne notities</span><textarea name="notes" rows="3"></textarea></label>
+          <div class="form-actions"><button class="button" type="submit">Waarschuwing opslaan</button><span data-admin-feedback="warnings"></span></div>
+        </form>
+        <div class="staff-card">
+          <div class="staff-card-title"><span class="staff-card-icon">=</span>Waarschuwingen</div>
+          <div class="record-grid" data-admin-list="warnings"><p class="staff-empty">Waarschuwingen laden...</p></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="container section slim">
+      <div class="section-head compact">
         <p class="eyebrow">Regels beheren</p>
         <h2>Extra staffregels toevoegen</h2>
       </div>
@@ -208,6 +236,33 @@
         <div class="staff-card">
           <div class="staff-card-title"><span class="staff-card-icon">=</span>Beheerregels</div>
           <div class="record-grid" data-admin-list="rules"><p class="staff-empty">Regels laden...</p></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="container section slim">
+      <div class="section-head compact">
+        <p class="eyebrow">Meeting-notulen</p>
+        <h2>Staffmeetings en actiepunten</h2>
+      </div>
+      <div class="admin-module-grid">
+        <form class="staff-card admin-form" data-admin-form="meetings">
+          <div class="staff-card-title"><span class="staff-card-icon">+</span>Meeting toevoegen</div>
+          <div class="form-grid">
+            <label><span>Titel</span><input name="title" required placeholder="Staffmeeting week ..." /></label>
+            <label><span>Moment</span><input name="meetingAt" placeholder="Datum/tijd" /></label>
+            <label><span>Voorzitter</span><input name="chair" /></label>
+            <label><span>Status</span><select name="status"><option>Concept</option><option>Gepland</option><option>Besproken</option><option>Afgerond</option></select></label>
+          </div>
+          <label><span>Aanwezigen</span><textarea name="participants" rows="3" placeholder="Een naam per regel"></textarea></label>
+          <label><span>Agenda</span><textarea name="agenda" rows="3"></textarea></label>
+          <label><span>Besluiten</span><textarea name="decisions" rows="4"></textarea></label>
+          <label><span>Actiepunten</span><textarea name="actionItems" rows="3" placeholder="Een actiepunt per regel"></textarea></label>
+          <div class="form-actions"><button class="button" type="submit">Meeting opslaan</button><span data-admin-feedback="meetings"></span></div>
+        </form>
+        <div class="staff-card">
+          <div class="staff-card-title"><span class="staff-card-icon">=</span>Meetings</div>
+          <div class="record-grid" data-admin-list="meetings"><p class="staff-empty">Meetings laden...</p></div>
         </div>
       </div>
     </section>
