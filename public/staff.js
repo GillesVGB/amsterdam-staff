@@ -50,11 +50,35 @@ async function initStaffAuthStatus() {
 }
 
 function normalizeRoleName(name) {
-  return String(name || "").toLowerCase().replace(/^@?\|\s*/, "").trim();
+  return String(name || "")
+    .normalize("NFD")
+    .replace(/[\u0300-\u036f]/g, "")
+    .toLowerCase()
+    .replace(/^@?\s*\|?\s*/, "")
+    .replace(/[^\p{L}\p{N}]+/gu, " ")
+    .trim();
 }
 
 function displayRoleName(name) {
   return String(name || "").replace(/^@?\|\s*/, "").trim();
+}
+
+function findRoleByName(rolesByName, roleName) {
+  const needle = normalizeRoleName(roleName);
+  if (!needle) return null;
+  if (rolesByName[needle]) return rolesByName[needle];
+
+  return Object.entries(rolesByName)
+    .filter(([key]) => key === needle || key.includes(needle) || needle.includes(key))
+    .sort((a, b) => Math.abs(a[0].length - needle.length) - Math.abs(b[0].length - needle.length))[0]?.[1] || null;
+}
+
+function markRoleTagsUnavailable(tags, message) {
+  tags.forEach((tag) => {
+    tag.title = message || "Discord rol kon niet geladen worden";
+    const idEl = tag.querySelector(".staff-role-id-hint");
+    if (idEl) idEl.textContent = "Niet geladen";
+  });
 }
 
 async function enhanceRoleTags() {
@@ -66,6 +90,11 @@ async function enhanceRoleTags() {
 
   try {
     const data = await fetchStaffJson(endpoint);
+    if (!data.ok) {
+      markRoleTagsUnavailable(tags, data.message);
+      return;
+    }
+
     const roles = data.roles || {};
     const rolesByName = {};
     Object.keys(roles).forEach((id) => {
@@ -73,7 +102,7 @@ async function enhanceRoleTags() {
     });
 
     tags.forEach((tag) => {
-      const role = roles[tag.dataset.roleId] || rolesByName[normalizeRoleName(tag.dataset.roleName)];
+      const role = roles[tag.dataset.roleId] || findRoleByName(rolesByName, tag.dataset.roleName);
       if (!role) return;
       tag.dataset.roleId = role.id;
       tag.title = "Discord role ID: " + role.id;
@@ -87,8 +116,8 @@ async function enhanceRoleTags() {
       if (idEl) idEl.textContent = role.id;
       if (dotEl) dotEl.style.background = role.color || "#36b8d0";
     });
-  } catch {
-    // Tags blijven zichtbaar met de statische AMRP-rolnamen.
+  } catch (error) {
+    markRoleTagsUnavailable(tags, error.message);
   }
 }
 
