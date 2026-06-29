@@ -60,7 +60,7 @@ function normalizeRoleName(name) {
 }
 
 function displayRoleName(name) {
-  return String(name || "").replace(/^@?\|\s*/, "").trim();
+  return String(name || "").replace(/^@?\s*\|?\s*/, "").trim();
 }
 
 function findRoleByName(rolesByName, roleName) {
@@ -85,8 +85,9 @@ async function enhanceRoleTags() {
   const tags = Array.from(document.querySelectorAll("[data-role-id], [data-role-name]"));
   if (!tags.length || window.location.protocol === "file:") return;
 
+  const needsRoleNameLookup = tags.some((tag) => tag.dataset.roleName && !tag.dataset.roleId);
   const ids = Array.from(new Set(tags.map((tag) => tag.dataset.roleId).filter(Boolean)));
-  const endpoint = ids.length ? "/api/staff/roles?ids=" + encodeURIComponent(ids.join(",")) : "/api/staff/roles";
+  const endpoint = !needsRoleNameLookup && ids.length ? "/api/staff/roles?ids=" + encodeURIComponent(ids.join(",")) : "/api/staff/roles";
 
   try {
     const data = await fetchStaffJson(endpoint);
@@ -914,6 +915,73 @@ function initAdminTabs() {
   activate(panels.some((panel) => panel.id === hashTarget) ? hashTarget : panels[0].id, false);
 }
 
+function initStaffRuleSearch() {
+  const input = document.querySelector("[data-staff-rule-search], [data-search]");
+  if (!input) return;
+
+  const cards = Array.from(document.querySelectorAll("[data-rule-card], [data-search-card]"));
+  const sections = Array.from(document.querySelectorAll("[data-rule-section], [data-section]"));
+  const emptyState = document.querySelector("[data-empty]");
+  const navLinks = Array.from(document.querySelectorAll("[data-nav-link]"));
+  const progress = document.querySelector("[data-progress]");
+  const backTop = document.querySelector("[data-back-top]");
+
+  function normalizeSearch(value) {
+    return String(value || "")
+      .normalize("NFD")
+      .replace(/[\u0300-\u036f]/g, "")
+      .toLowerCase();
+  }
+
+  function updateScrollState() {
+    if (progress) {
+      const max = Math.max(1, document.documentElement.scrollHeight - window.innerHeight);
+      progress.style.width = Math.min(100, Math.max(0, (window.scrollY / max) * 100)) + "%";
+    }
+
+    if (backTop) {
+      backTop.classList.toggle("is-visible", window.scrollY > 520);
+    }
+
+    if (!navLinks.length) return;
+    const active = sections
+      .filter((section) => !section.classList.contains("is-empty"))
+      .map((section) => ({ id: section.id, top: section.getBoundingClientRect().top }))
+      .filter((section) => section.top < 210)
+      .sort((a, b) => b.top - a.top)[0];
+
+    navLinks.forEach((link) => {
+      link.classList.toggle("is-active", Boolean(active && link.getAttribute("href") === "#" + active.id));
+    });
+  }
+
+  function applyFilter() {
+    const needle = normalizeSearch(input.value.trim());
+    let visibleCount = 0;
+
+    cards.forEach((card) => {
+      const match = !needle || normalizeSearch(card.textContent + " " + (card.dataset.type || "")).includes(needle);
+      card.classList.toggle("is-hidden", !match);
+      if (match) visibleCount += 1;
+    });
+
+    sections.forEach((section) => {
+      const sectionCards = Array.from(section.querySelectorAll("[data-rule-card], [data-search-card]"));
+      const hasVisibleCards = sectionCards.some((card) => !card.classList.contains("is-hidden"));
+      section.classList.toggle("is-empty", sectionCards.length > 0 && !hasVisibleCards);
+    });
+
+    if (emptyState) emptyState.hidden = visibleCount !== 0;
+    updateScrollState();
+  }
+
+  input.addEventListener("input", applyFilter);
+  window.addEventListener("scroll", updateScrollState, { passive: true });
+  if (backTop) backTop.addEventListener("click", () => window.scrollTo({ top: 0, behavior: "smooth" }));
+  applyFilter();
+  updateScrollState();
+}
+
 async function loadManagedRules() {
   const root = document.querySelector("[data-managed-rules]");
   if (!root || window.location.protocol === "file:") return;
@@ -940,6 +1008,7 @@ initDossierForm();
 initDossierFilters();
 loadDossiers();
 initAdminTabs();
+initStaffRuleSearch();
 initAdminPanel();
 initProfilePage();
 loadManagedRules();

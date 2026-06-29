@@ -4,290 +4,78 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Regels | Amsterdam Roleplay Staff</title>
-  <meta name="description" content="Amsterdam Roleplay staff portaal met dashboard, regels, functies, dossiers, support en tools." />
+  <meta name="description" content="Uitgebreid overzicht van alle staffregels, sancties en blacklist-afspraken van Amsterdam Roleplay." />
   <link rel="icon" type="image/png" href="assets/logo-amsterdam-roleplay.png" />
   <link rel="stylesheet" href="style.css" />
 </head>
-<body class="" data-page="regels.html">
-  
+<body data-page="regels.html">
+  <div class="progress" data-progress></div>
   <header class="portal-header">
     <nav class="portal-nav container">
-      <a class="brand" href="dashboard.html">
-    <img src="assets/logo-amsterdam-roleplay.png" alt="" />
-    <span><strong>Amsterdam Roleplay</strong><small>Staff Portaal</small></span>
-  </a>
-      <div class="top-links">
-        <a href="https://overheid.amsterdamrp.store/overheid">Overheid</a>
-        <a href="https://amsterdamrp.store/">Hoofdsite</a>
-        <a href="/api/staff/auth/logout">Uitloggen</a>
-      </div>
+      <a class="brand" href="dashboard.html"><img src="assets/logo-amsterdam-roleplay.png" alt="" /><span><strong>Amsterdam Roleplay</strong><small>Staff Portaal</small></span></a>
+      <div class="top-links"><a href="https://overheid.amsterdamrp.store/overheid">Overheid</a><a href="https://amsterdamrp.store/">Hoofdsite</a><a href="/api/staff/auth/logout">Uitloggen</a></div>
     </nav>
     <div class="subnav container"><a href="dashboard.html">Dashboard</a><a href="regels.html" class="is-active">Regels</a><a href="functies.html">Functies</a><a href="team.html">Team</a><a href="dossiers.html">Dossiers</a><a href="support.html">Support</a><a href="wapens.html">Wapens</a><a href="onderwereld.html">Onderwereld</a><a href="admin.html">Beheer</a></div>
   </header>
-  <main>
-    <section class="hero-panel">
-    <div class="container hero-grid">
-      <div class="hero-copy">
-        <p class="eyebrow">Staffregels</p>
-        <h1>Regels en afspraken</h1>
-        <p>Alle staffregels vertaald naar Amsterdam Roleplay branding.</p>
-        
-      </div>
-      <div class="metric-grid"><div><span>Secties</span><strong>7</strong></div><div><span>Regels</span><strong>36</strong></div></div>
-    </div>
-  </section>
-    <div class="container section">
-    <section class="rule-section">
-      <h2>Extra beheerregels</h2>
-      <div class="record-grid" data-managed-rules>
-        <p class="staff-empty">Extra regels laden...</p>
-      </div>
-    </section>
-    <section class="rule-section">
-      <h2>Algemene richtlijnen en regels</h2>
-      <div class="rule-list">
-        <article class="rule-card">
-          <span>Regel 1</span>
-          <h3>Discord-link in bio / status</h3>
-          <p>De Discord-link van Amsterdam Roleplay moet zichtbaar in je bio of status staan. Een stafftag is optioneel.</p>
-          <small>Staffleden die dit niet hebben ingesteld kunnen worden uitgesloten van promoties en kunnen een staffwarn ontvangen.</small>
-        </article>
-        <article class="rule-card">
-          <span>Regel 2</span>
-          <h3>Andere servers</h3>
-          <p>Het spelen op andere roleplayservers is niet toegestaan.</p>
-          <small>Dit voorkomt belangenverstrengeling en zorgt voor loyaliteit aan Amsterdam Roleplay.</small>
-        </article>
-        <article class="rule-card">
-          <span>Regel 3</span>
-          <h3>Dubbelclannen</h3>
-          <p>Het hebben van andere roleplayservers in je bio, staff zijn op andere servers of het bezitten van een eigen roleplayserver wordt gezien als dubbelclannen.</p>
-          <small>Dit leidt tot direct ontslag uit het staffteam.</small>
-        </article>
-        <article class="rule-card">
-          <span>Regel 4</span>
-          <h3>Cheats en externe software</h3>
-          <p>Het gebruiken, promoten of bezitten van cheats, exploitsoftware of ongeoorloofde hulpmiddelen is verboden.</p>
-          <small>Dit geldt zowel binnen als buiten Amsterdam Roleplay en resulteert in direct ontslag en een staffblacklist.</small>
-        </article>
-        <article class="rule-card">
-          <span>Regel 5</span>
-          <h3>Privacy en persoonsgegevens</h3>
-          <p>Het lekken, delen of verspreiden van persoonlijke informatie van burgers of staffleden is verboden.</p>
-          <small>Overtreding leidt direct tot ontslag en een staffblacklist.</small>
-        </article>
-        <article class="rule-card">
-          <span>Regel 6</span>
-          <h3>Misbruik van communicatiebevoegdheden</h3>
-          <p>Het onterecht disconnecten, deafenen of dempen van burgers of staffleden is niet toegestaan.</p>
-          <small>Misbruik van bevoegdheden wordt gezien als staffabuse.</small>
-        </article>
-        <article class="rule-card">
-          <span>Regel 7</span>
-          <h3>Schade aan de community</h3>
-          <p>Wanneer een stafflid zich bezighoudt met zaken die de server of haar reputatie kunnen schaden, kan het beheerteam besluiten rollen af te nemen.</p>
-          <small>Dit geldt zowel binnen als buiten de server.</small>
-        </article>
-        <article class="rule-card">
-          <span>Regel 8</span>
-          <h3>Terugkeren na ontslag</h3>
-          <p>Wanneer een stafflid vrijwillig ontslag neemt en later terugkeert, kan deze opnieuw worden aangenomen.</p>
-          <small>De terugkeer vindt minimaal twee rangen lager plaats dan de vorige functie.</small>
-        </article></div>
-    </section>
-    <section class="rule-section">
-      <h2>Sancties &amp; bevoegdheden</h2>
-      <div class="rule-list">
-        <article class="rule-card">
-          <span>Regel 9</span>
-          <h3>Sancties aanpassen</h3>
-          <p>Het verwijderen of aanpassen van taken, warns of bans die je niet zelf hebt uitgedeeld is niet toegestaan.</p>
-          <small>Dit moet altijd besproken worden met het stafflid dat de sanctie heeft opgelegd.</small>
-        </article>
-        <article class="rule-card">
-          <span>Regel 10</span>
-          <h3>Eigen staffzaken</h3>
-          <p>Eigen staffzaken mogen alleen behandeld worden vanaf de rang Adviseur.</p>
-          <small>Dit moet altijd objectief, correct en eerlijk gebeuren.</small>
-        </article>
-        <article class="rule-card">
-          <span>Regel 11</span>
-          <h3>Belangenverstrengeling</h3>
-          <p>Je mag geen staffzaken behandelen waarbij vrienden, gangleden of jijzelf betrokken zijn.</p>
-          <small>Alleen Mede-Beheer+ mag hier in uitzonderlijke gevallen van afwijken.</small>
-        </article>
-        <article class="rule-card">
-          <span>Regel 12</span>
-          <h3>Staffabuse</h3>
-          <p>Het gebruiken van staffpermissies voor persoonlijk voordeel binnen roleplay is verboden.</p>
-          <small>Hieronder vallen onder andere geld verdienen, items verkrijgen of RP-voordelen creëren.</small>
-        </article>
-        <article class="rule-card">
-          <span>Regel 13</span>
-          <h3>Revives</h3>
-          <p>Het reviven van personen zonder voldoende bewijs te hebben gezien is niet toegestaan.</p>
-          <small>Dit wordt beschouwd als staffabuse.</small>
-        </article>
-        <article class="rule-card">
-          <span>Regel 14</span>
-          <h3>APV-overtredingen</h3>
-          <p>Staffleden dienen zich altijd aan de APV te houden.</p>
-          <small>Ernstige overtredingen kunnen leiden tot staffsancties naast normale sancties. Zie APV-kanaal op Discord (1508515879707742320).</small>
-        </article>
-        <article class="rule-card">
-          <span>Regel 15</span>
-          <h3>Uitdelen van staffsancties</h3>
-          <p>Staffwarns en ontslagen mogen uitsluitend worden uitgevoerd door Staff Coördinatoren en Lead Coördinatoren.</p>
-          <small>Andere staffleden hebben hiervoor geen bevoegdheid.</small>
-        </article>
-        <article class="rule-card">
-          <span>Regel 16</span>
-          <h3>Gedrag tijdens staffdienst</h3>
-          <p>Tijdens staffdienst is het verboden om actief deel te nemen aan roleplayscenario&#39;s of rond te rijden in de stad.</p>
-          <small>Je focus moet volledig liggen op het helpen van spelers en het afhandelen van tickets.</small>
-        </article>
-        <article class="rule-card">
-          <span>Regel 17</span>
-          <h3>Behandeling van staffzaken</h3>
-          <p>Tijdens een staffzaak dien je altijd respectvol en professioneel te communiceren.</p>
-          <small>Vraag waar nodig om clips, screenshots of ander bewijsmateriaal.</small>
-        </article></div>
-    </section>
-    <section class="rule-section">
-      <h2>Professionaliteit</h2>
-      <div class="rule-list">
-        <article class="rule-card">
-          <span>Regel 18</span>
-          <h3>Professioneel gedrag</h3>
-          <p>Staffleden dienen zich respectvol en professioneel te gedragen op Discord, in-game en op sociale media.</p>
-          <small>Toxic gedrag, provoceren of het zwartmaken van de server is niet toegestaan.</small>
-        </article>
-        <article class="rule-card">
-          <span>Regel 19</span>
-          <h3>Misbruik van staffinformatie</h3>
-          <p>Informatie verkregen via staffwerkzaamheden mag niet worden gebruikt voor persoonlijk voordeel.</p>
-          <small>Hieronder valt ook het doorspelen van informatie aan vrienden of gangleden.</small>
-        </article>
-        <article class="rule-card">
-          <span>Regel 20</span>
-          <h3>Favoritisme</h3>
-          <p>Het bevoordelen van vrienden, kennissen of gangleden is niet toegestaan.</p>
-          <small>Iedere speler moet gelijk behandeld worden ongeacht persoonlijke banden.</small>
-        </article>
-        <article class="rule-card">
-          <span>Regel 21</span>
-          <h3>Objectiviteit</h3>
-          <p>Staffzaken moeten altijd neutraal en objectief worden behandeld.</p>
-          <small>Persoonlijke meningen mogen geen invloed hebben op een beslissing.</small>
-        </article></div>
-    </section>
-    <section class="rule-section">
-      <h2>Activiteit</h2>
-      <div class="rule-list">
-        <article class="rule-card">
-          <span>Regel 22</span>
-          <h3>Activiteitseis</h3>
-          <p>Staffleden worden geacht actief aanwezig te zijn binnen het staffteam.</p>
-          <small>Langdurige inactiviteit zonder melding kan leiden tot degradatie of ontslag.</small>
-        </article>
-        <article class="rule-card">
-          <span>Regel 23</span>
-          <h3>Afwezigheid melden</h3>
-          <p>Bij afwezigheid van meerdere dagen dient dit gemeld te worden bij een leidinggevende.</p>
-          <small>Hierdoor blijft de bezetting van het staffteam overzichtelijk.</small>
-        </article>
-        <article class="rule-card">
-          <span>Regel 24</span>
-          <h3>AFK tijdens staffdienst</h3>
-          <p>Langdurig AFK staan tijdens staffdienst zonder geldige reden is niet toegestaan.</p>
-          <small>Staffdienst is bedoeld om spelers actief te ondersteunen.</small>
-        </article></div>
-    </section>
-    <section class="rule-section">
-      <h2>Bewijsmateriaal</h2>
-      <div class="rule-list">
-        <article class="rule-card">
-          <span>Regel 25</span>
-          <h3>Bewijs bewaren</h3>
-          <p>Bij zware sancties zoals langdurige bans, blacklists of ontslagen dient voldoende bewijs bewaard te worden.</p>
-          <small>Dit bewijs moet beschikbaar zijn voor eventuele beroepsprocedures.</small>
-        </article>
-        <article class="rule-card">
-          <span>Regel 26</span>
-          <h3>Onderzoeksplicht</h3>
-          <p>Voordat een zware sanctie wordt uitgedeeld dient voldoende onderzoek plaats te vinden.</p>
-          <small>Sancties mogen nooit gebaseerd zijn op aannames.</small>
-        </article></div>
-    </section>
-    <section class="rule-section">
-      <h2>Corruptie &amp; misbruik</h2>
-      <div class="rule-list">
-        <article class="rule-card">
-          <span>Regel 27</span>
-          <h3>Omkoping</h3>
-          <p>Het aannemen van geld, voertuigen, goederen of andere voordelen in ruil voor staffhulp is verboden.</p>
-          <small>Dit wordt gezien als corruptie en leidt doorgaans tot ontslag.</small>
-        </article>
-        <article class="rule-card">
-          <span>Regel 28</span>
-          <h3>Misbruik van bevoegdheden</h3>
-          <p>Staffbevoegdheden mogen uitsluitend worden gebruikt voor staffdoeleinden.</p>
-          <small>Elk ander gebruik wordt beschouwd als staffmisbruik.</small>
-        </article></div>
-    </section>
-    <section class="rule-section">
-      <h2>Extra regels</h2>
-      <div class="rule-list">
-        <article class="rule-card">
-          <span>Regel 29</span>
-          <h3>Crosshairs</h3>
-          <p>Crosshairs zijn toegestaan binnen Amsterdam Roleplay.</p>
-          <small>Mits deze geen verboden functies bevatten.</small>
-        </article>
-        <article class="rule-card">
-          <span>Regel 30</span>
-          <h3>Vragen om promoties</h3>
-          <p>Het vragen om promoties is niet toegestaan.</p>
-          <small>Dit zal leiden tot een staffwarn.</small>
-        </article>
-        <article class="rule-card">
-          <span>Regel 31</span>
-          <h3>AMRP-tag</h3>
-          <p>Iedereen dient &quot;AMRP&quot; voor zijn of haar naam te hebben in-game.</p>
-          <small>Uitzondering geldt voor het Beheer Team.</small>
-        </article>
-        <article class="rule-card">
-          <span>Regel 32</span>
-          <h3>TX-voertuigen</h3>
-          <p>Het inspawnen van voertuigen via /tx is niet toegestaan.</p>
-          <small>Alleen toegestane systemen mogen hiervoor worden gebruikt.</small>
-        </article>
-        <article class="rule-card">
-          <span>Regel 33</span>
-          <h3>TX-permissies</h3>
-          <p>Het gebruiken van TX-permissies buiten staffdienst is verboden.</p>
-          <small>Dit wordt gezien als misbruik van bevoegdheden.</small>
-        </article>
-        <article class="rule-card">
-          <span>Regel 34</span>
-          <h3>Promoties uitdelen</h3>
-          <p>Promoties mogen uitsluitend worden gegeven door Beheer of met toestemming van Beheer.</p>
-          <small>Andere promoties zijn ongeldig.</small>
-        </article>
-        <article class="rule-card">
-          <span>Regel 35</span>
-          <h3>Anticheat-testers</h3>
-          <p>Er bestaan geen officiële anticheat-testers binnen Amsterdam Roleplay.</p>
-          <small>Personen die zich voordoen als anticheat-tester dienen alsnog bestraft te worden volgens de regels.</small>
-        </article>
-        <article class="rule-card">
-          <span>Regel 36</span>
-          <h3>Schelden met ziektes</h3>
-          <p>Schelden met ziektes is niet toegestaan.</p>
-          <small>Dit leidt per direct tot ontslag uit het staffteam.</small>
-        </article></div>
-    </section></div></main>
-  <footer class="portal-footer"><div class="container footer-row"><span>Amsterdam Roleplay Staff Portaal</span><span>Interne omgeving voor staff.</span></div></footer>
+  <main id="top" class="portal-rules-page">
+<section class="hero"><div class="container hero-inner"><div class="hero-copy"><p class="eyebrow">Interne richtlijnen</p><h1>Staffregels Amsterdam Roleplay</h1><p class="lead">Een modern, uitgebreid en duidelijk overzicht voor staffleden. Elke regel toont het type, de kernregel, toelichting en praktische werkwijze.</p><div class="hero-actions"><a href="#regels" class="primary-action">Bekijk regels</a><a href="https://discord.com/channels/1416816652644909109/1508515879707742320" target="_blank" rel="noopener" class="ghost-action">Open APV</a></div></div><aside class="stats-card" aria-label="Samenvatting"><div><span>Secties</span><strong>9</strong></div><div><span>Regels</span><strong>41</strong></div><div><span>Beleid</span><strong>6</strong></div></aside></div></section><section class="tools" id="regels"><div class="container tools-inner"><label class="search-box"><span>Zoeken in staffregels</span><input type="search" data-search placeholder="Zoek op type, staffabuse, refund, APV, blacklist..." autocomplete="off" /></label><nav class="section-nav" aria-label="Regelsecties"><a href="#algemene-richtlijnen-en-regels" data-nav-link><span>01</span>Algemene richtlijnen en regels</a>
+<a href="#sancties-bevoegdheden" data-nav-link><span>02</span>Sancties &amp; bevoegdheden</a>
+<a href="#professionaliteit" data-nav-link><span>03</span>Professionaliteit</a>
+<a href="#activiteit" data-nav-link><span>04</span>Activiteit</a>
+<a href="#bewijsmateriaal" data-nav-link><span>05</span>Bewijsmateriaal</a>
+<a href="#corruptie-misbruik" data-nav-link><span>06</span>Corruptie &amp; misbruik</a>
+<a href="#extra-regels" data-nav-link><span>07</span>Extra regels</a>
+<a href="#staff-sanctiebeleid" data-nav-link><span>08</span>Staff sanctiebeleid</a>
+<a href="#staff-blacklist" data-nav-link><span>09</span>Staff blacklist</a></nav></div></section><section class="container rules-shell"><div class="notice"><strong>Belangrijk:</strong> staffzaken worden objectief, rustig en controleerbaar behandeld. Gebruik bij APV-zaken altijd het officiele APV-kanaal als bron: <a href="https://discord.com/channels/1416816652644909109/1508515879707742320" target="_blank" rel="noopener">open APV-kanaal</a>.</div><p class="empty-state" data-empty hidden>Geen regels gevonden voor deze zoekterm.</p><section class="rules-section" id="algemene-richtlijnen-en-regels" data-section><header class="section-heading"><span>01</span><div><p>Basisregel</p><h2>Algemene richtlijnen en regels</h2></div></header><div class="rules-grid"><article class="rule-card" data-search-card data-type="Basisregel"><header class="rule-top"><div><span class="rule-number">Regel 1</span><span class="rule-type">Basisregel</span></div><span class="rule-priority">Hoog</span></header><h3>Discord-link in bio / status</h3><div class="rule-body"><strong>Kernregel</strong><p>De Discord-link van Amsterdam Roleplay moet zichtbaar in je bio of status staan. Een stafftag is optioneel.</p></div><div class="rule-info"><strong>Toelichting</strong><p>Staffleden die dit niet hebben ingesteld kunnen worden uitgesloten van promoties en kunnen een staffwarn ontvangen. Voorbeeld: discord.gg/amsterdamrp - zet hier jouw rang.</p></div><details class="rule-details" open><summary>Werkwijze en voorbeelden</summary><ul><li>Zorg dat je gedrag past bij een voorbeeldfunctie binnen Amsterdam Roleplay.</li><li>Twijfel je of iets mag, vraag dit eerst aan een leidinggevende in plaats van achteraf te herstellen.</li><li>Deze regel geldt ook wanneer je buiten staffdienst herkenbaar namens de community handelt.</li></ul></details></article>
+<article class="rule-card" data-search-card data-type="Basisregel"><header class="rule-top"><div><span class="rule-number">Regel 2</span><span class="rule-type">Basisregel</span></div><span class="rule-priority">Hoog</span></header><h3>Andere servers</h3><div class="rule-body"><strong>Kernregel</strong><p>Het spelen op andere roleplayservers is niet toegestaan.</p></div><div class="rule-info"><strong>Toelichting</strong><p>Dit voorkomt belangenverstrengeling en zorgt voor loyaliteit aan Amsterdam Roleplay.</p></div><details class="rule-details" open><summary>Werkwijze en voorbeelden</summary><ul><li>Zorg dat je gedrag past bij een voorbeeldfunctie binnen Amsterdam Roleplay.</li><li>Twijfel je of iets mag, vraag dit eerst aan een leidinggevende in plaats van achteraf te herstellen.</li><li>Deze regel geldt ook wanneer je buiten staffdienst herkenbaar namens de community handelt.</li></ul></details></article>
+<article class="rule-card" data-search-card data-type="Basisregel"><header class="rule-top"><div><span class="rule-number">Regel 3</span><span class="rule-type">Basisregel</span></div><span class="rule-priority">Hoog</span></header><h3>Dubbelclannen</h3><div class="rule-body"><strong>Kernregel</strong><p>Het hebben van andere roleplayservers in je bio, staff zijn op andere servers of het bezitten van een eigen roleplayserver wordt gezien als dubbelclannen.</p></div><div class="rule-info"><strong>Toelichting</strong><p>Dit leidt tot direct ontslag uit het staffteam.</p></div><details class="rule-details" open><summary>Werkwijze en voorbeelden</summary><ul><li>Zorg dat je gedrag past bij een voorbeeldfunctie binnen Amsterdam Roleplay.</li><li>Twijfel je of iets mag, vraag dit eerst aan een leidinggevende in plaats van achteraf te herstellen.</li><li>Deze regel geldt ook wanneer je buiten staffdienst herkenbaar namens de community handelt.</li></ul></details></article>
+<article class="rule-card" data-search-card data-type="Basisregel"><header class="rule-top"><div><span class="rule-number">Regel 4</span><span class="rule-type">Basisregel</span></div><span class="rule-priority">Hoog</span></header><h3>Cheats en externe software</h3><div class="rule-body"><strong>Kernregel</strong><p>Het gebruiken, promoten of bezitten van cheats, exploitsoftware of ongeoorloofde hulpmiddelen is verboden.</p></div><div class="rule-info"><strong>Toelichting</strong><p>Dit geldt zowel binnen als buiten Amsterdam Roleplay en resulteert in direct ontslag en een staffblacklist.</p></div><details class="rule-details" open><summary>Werkwijze en voorbeelden</summary><ul><li>Meld vermoedens direct aan hogere staff of beheer.</li><li>Deel geen gevoelige informatie met spelers of buitenstaanders.</li><li>Bewijs en logs moeten zorgvuldig bewaard blijven.</li></ul></details></article>
+<article class="rule-card" data-search-card data-type="Basisregel"><header class="rule-top"><div><span class="rule-number">Regel 5</span><span class="rule-type">Basisregel</span></div><span class="rule-priority">Hoog</span></header><h3>Privacy en persoonsgegevens</h3><div class="rule-body"><strong>Kernregel</strong><p>Het lekken, delen of verspreiden van persoonlijke informatie van burgers of staffleden is verboden.</p></div><div class="rule-info"><strong>Toelichting</strong><p>Overtreding leidt direct tot ontslag en een staffblacklist.</p></div><details class="rule-details" open><summary>Werkwijze en voorbeelden</summary><ul><li>Zorg dat je gedrag past bij een voorbeeldfunctie binnen Amsterdam Roleplay.</li><li>Twijfel je of iets mag, vraag dit eerst aan een leidinggevende in plaats van achteraf te herstellen.</li><li>Deze regel geldt ook wanneer je buiten staffdienst herkenbaar namens de community handelt.</li></ul></details></article>
+<article class="rule-card" data-search-card data-type="Basisregel"><header class="rule-top"><div><span class="rule-number">Regel 6</span><span class="rule-type">Basisregel</span></div><span class="rule-priority">Hoog</span></header><h3>Misbruik van communicatiebevoegdheden</h3><div class="rule-body"><strong>Kernregel</strong><p>Het onterecht disconnecten, deafenen of dempen van burgers of staffleden is niet toegestaan.</p></div><div class="rule-info"><strong>Toelichting</strong><p>Misbruik van bevoegdheden wordt gezien als staffabuse.</p></div><details class="rule-details" open><summary>Werkwijze en voorbeelden</summary><ul><li>Zorg dat je gedrag past bij een voorbeeldfunctie binnen Amsterdam Roleplay.</li><li>Twijfel je of iets mag, vraag dit eerst aan een leidinggevende in plaats van achteraf te herstellen.</li><li>Deze regel geldt ook wanneer je buiten staffdienst herkenbaar namens de community handelt.</li></ul></details></article>
+<article class="rule-card" data-search-card data-type="Basisregel"><header class="rule-top"><div><span class="rule-number">Regel 7</span><span class="rule-type">Basisregel</span></div><span class="rule-priority">Hoog</span></header><h3>Schade aan de community</h3><div class="rule-body"><strong>Kernregel</strong><p>Wanneer een stafflid zich bezighoudt met zaken die de server of haar reputatie kunnen schaden, kan het beheerteam besluiten rollen af te nemen.</p></div><div class="rule-info"><strong>Toelichting</strong><p>Dit geldt zowel binnen als buiten de server.</p></div><details class="rule-details" open><summary>Werkwijze en voorbeelden</summary><ul><li>Zorg dat je gedrag past bij een voorbeeldfunctie binnen Amsterdam Roleplay.</li><li>Twijfel je of iets mag, vraag dit eerst aan een leidinggevende in plaats van achteraf te herstellen.</li><li>Deze regel geldt ook wanneer je buiten staffdienst herkenbaar namens de community handelt.</li></ul></details></article>
+<article class="rule-card" data-search-card data-type="Basisregel"><header class="rule-top"><div><span class="rule-number">Regel 8</span><span class="rule-type">Basisregel</span></div><span class="rule-priority">Hoog</span></header><h3>Terugkeren na ontslag</h3><div class="rule-body"><strong>Kernregel</strong><p>Wanneer een stafflid vrijwillig ontslag neemt en later terugkeert, kan deze opnieuw worden aangenomen.</p></div><div class="rule-info"><strong>Toelichting</strong><p>De terugkeer vindt minimaal twee rangen lager plaats dan de vorige functie.</p></div><details class="rule-details" open><summary>Werkwijze en voorbeelden</summary><ul><li>Zorg dat je gedrag past bij een voorbeeldfunctie binnen Amsterdam Roleplay.</li><li>Twijfel je of iets mag, vraag dit eerst aan een leidinggevende in plaats van achteraf te herstellen.</li><li>Deze regel geldt ook wanneer je buiten staffdienst herkenbaar namens de community handelt.</li></ul></details></article></div></section>
+<section class="rules-section" id="sancties-bevoegdheden" data-section><header class="section-heading"><span>02</span><div><p>Bevoegdheid</p><h2>Sancties &amp; bevoegdheden</h2></div></header><div class="rules-grid"><article class="rule-card" data-search-card data-type="Bevoegdheid"><header class="rule-top"><div><span class="rule-number">Regel 9</span><span class="rule-type">Bevoegdheid</span></div><span class="rule-priority">Zeer hoog</span></header><h3>Sancties aanpassen</h3><div class="rule-body"><strong>Kernregel</strong><p>Het verwijderen of aanpassen van taken, warns of bans die je niet zelf hebt uitgedeeld is niet toegestaan.</p></div><div class="rule-info"><strong>Toelichting</strong><p>Dit moet altijd besproken worden met het stafflid dat de sanctie heeft opgelegd.</p></div><details class="rule-details" open><summary>Werkwijze en voorbeelden</summary><ul><li>Gebruik bevoegdheden alleen wanneer ze nodig zijn voor een staffzaak of duidelijke serverveiligheid.</li><li>Leg je beslissing kort uit en zorg dat betrokken spelers begrijpen wat er gebeurt.</li><li>Bij belangenverstrengeling draag je de zaak direct over aan een andere staffer.</li></ul></details></article>
+<article class="rule-card" data-search-card data-type="Bevoegdheid"><header class="rule-top"><div><span class="rule-number">Regel 10</span><span class="rule-type">Bevoegdheid</span></div><span class="rule-priority">Zeer hoog</span></header><h3>Eigen staffzaken</h3><div class="rule-body"><strong>Kernregel</strong><p>Staffleden mogen geen staffzaak behandelen waarbij zij zelf betrokken zijn.</p></div><div class="rule-info"><strong>Toelichting</strong><p>Wanneer een stafflid zelf betrokken is bij een situatie, dient deze staffer zich terug te trekken uit de staffzaak.</p></div><details class="rule-details" open><summary>Werkwijze en voorbeelden</summary><ul><li>Gebruik bevoegdheden alleen wanneer ze nodig zijn voor een staffzaak of duidelijke serverveiligheid.</li><li>Leg je beslissing kort uit en zorg dat betrokken spelers begrijpen wat er gebeurt.</li><li>Bij belangenverstrengeling draag je de zaak direct over aan een andere staffer.</li></ul></details></article>
+<article class="rule-card" data-search-card data-type="Bevoegdheid"><header class="rule-top"><div><span class="rule-number">Regel 10.1</span><span class="rule-type">Bevoegdheid</span></div><span class="rule-priority">Zeer hoog</span></header><h3>Overname door ander stafflid</h3><div class="rule-body"><strong>Kernregel</strong><p>Wanneer een staffer betrokken is bij een staffzaak, gaat deze naar de wachtruimte en neemt een ander beschikbaar stafflid de behandeling van de staffzaak over.</p></div><div class="rule-info"><strong>Toelichting</strong><p>Dit voorkomt belangenverstrengeling en zorgt voor een eerlijke, onafhankelijke en objectieve beoordeling van iedere situatie.</p></div><details class="rule-details" open><summary>Werkwijze en voorbeelden</summary><ul><li>Gebruik bevoegdheden alleen wanneer ze nodig zijn voor een staffzaak of duidelijke serverveiligheid.</li><li>Leg je beslissing kort uit en zorg dat betrokken spelers begrijpen wat er gebeurt.</li><li>Bij belangenverstrengeling draag je de zaak direct over aan een andere staffer.</li></ul></details></article>
+<article class="rule-card" data-search-card data-type="Bevoegdheid"><header class="rule-top"><div><span class="rule-number">Regel 11</span><span class="rule-type">Bevoegdheid</span></div><span class="rule-priority">Zeer hoog</span></header><h3>Belangenverstrengeling</h3><div class="rule-body"><strong>Kernregel</strong><p>Je mag geen staffzaken behandelen waarbij vrienden, gangleden of jijzelf betrokken zijn.</p></div><div class="rule-info"><strong>Toelichting</strong><p>Alleen Mede-Beheer+ mag hier in uitzonderlijke gevallen van afwijken.</p></div><details class="rule-details" open><summary>Werkwijze en voorbeelden</summary><ul><li>Neem geen zaak aan waarin jij, vrienden, gangleden of bekenden betrokken zijn.</li><li>Zet jezelf uit de behandeling en laat een neutrale staffer overnemen.</li><li>Objectiviteit is belangrijker dan snelheid.</li></ul></details></article>
+<article class="rule-card" data-search-card data-type="Bevoegdheid"><header class="rule-top"><div><span class="rule-number">Regel 11.1</span><span class="rule-type">Bevoegdheid</span></div><span class="rule-priority">Zeer hoog</span></header><h3>Geen eigen voordeel of partijdigheid</h3><div class="rule-body"><strong>Kernregel</strong><p>Staffleden mogen geen beslissingen nemen in zaken waarbij zijzelf, vrienden, gangleden of bekenden betrokken zijn.</p></div><div class="rule-info"><strong>Toelichting</strong><p>Staffzaken moeten altijd neutraal en professioneel behandeld worden. Persoonlijke banden mogen geen invloed hebben op de beslissing.</p></div><details class="rule-details" open><summary>Werkwijze en voorbeelden</summary><ul><li>Gebruik bevoegdheden alleen wanneer ze nodig zijn voor een staffzaak of duidelijke serverveiligheid.</li><li>Leg je beslissing kort uit en zorg dat betrokken spelers begrijpen wat er gebeurt.</li><li>Bij belangenverstrengeling draag je de zaak direct over aan een andere staffer.</li></ul></details></article>
+<article class="rule-card" data-search-card data-type="Bevoegdheid"><header class="rule-top"><div><span class="rule-number">Regel 12</span><span class="rule-type">Bevoegdheid</span></div><span class="rule-priority">Zeer hoog</span></header><h3>Staffabuse</h3><div class="rule-body"><strong>Kernregel</strong><p>Het gebruiken van staffpermissies voor persoonlijk voordeel binnen roleplay is verboden.</p></div><div class="rule-info"><strong>Toelichting</strong><p>Hieronder vallen onder andere geld verdienen, items verkrijgen of RP-voordelen creeren.</p></div><details class="rule-details" open><summary>Werkwijze en voorbeelden</summary><ul><li>Gebruik bevoegdheden alleen wanneer ze nodig zijn voor een staffzaak of duidelijke serverveiligheid.</li><li>Leg je beslissing kort uit en zorg dat betrokken spelers begrijpen wat er gebeurt.</li><li>Bij belangenverstrengeling draag je de zaak direct over aan een andere staffer.</li></ul></details></article>
+<article class="rule-card" data-search-card data-type="Bevoegdheid"><header class="rule-top"><div><span class="rule-number">Regel 13</span><span class="rule-type">Bevoegdheid</span></div><span class="rule-priority">Zeer hoog</span></header><h3>Revives</h3><div class="rule-body"><strong>Kernregel</strong><p>Het reviven van personen zonder voldoende bewijs te hebben gezien is niet toegestaan.</p></div><div class="rule-info"><strong>Toelichting</strong><p>Dit wordt beschouwd als staffabuse.</p></div><details class="rule-details" open><summary>Werkwijze en voorbeelden</summary><ul><li>Gebruik bevoegdheden alleen wanneer ze nodig zijn voor een staffzaak of duidelijke serverveiligheid.</li><li>Leg je beslissing kort uit en zorg dat betrokken spelers begrijpen wat er gebeurt.</li><li>Bij belangenverstrengeling draag je de zaak direct over aan een andere staffer.</li></ul></details></article>
+<article class="rule-card" data-search-card data-type="Bevoegdheid"><header class="rule-top"><div><span class="rule-number">Regel 14</span><span class="rule-type">Bevoegdheid</span></div><span class="rule-priority">Zeer hoog</span></header><h3>APV-overtredingen</h3><div class="rule-body"><strong>Kernregel</strong><p>Staffleden dienen zich altijd aan de APV te houden.</p></div><div class="rule-info"><strong>Toelichting</strong><p>Ernstige overtredingen kunnen leiden tot staffsancties naast normale sancties.</p><a class="inline-link" href="https://discord.com/channels/1416816652644909109/1508515879707742320" target="_blank" rel="noopener">Open APV-kanaal</a></div><details class="rule-details" open><summary>Werkwijze en voorbeelden</summary><ul><li>De APV blijft altijd leidend bij roleplay-situaties en normale spelerstraffen.</li><li>Gebruik het APV-kanaal als bron wanneer je twijfelt over een overtreding.</li><li>Ernstige APV-overtredingen kunnen naast spelersancties ook staffsancties opleveren.</li></ul></details></article>
+<article class="rule-card" data-search-card data-type="Bevoegdheid"><header class="rule-top"><div><span class="rule-number">Regel 15</span><span class="rule-type">Bevoegdheid</span></div><span class="rule-priority">Zeer hoog</span></header><h3>Uitdelen van staffsancties</h3><div class="rule-body"><strong>Kernregel</strong><p>Staffwarns en ontslagen mogen uitsluitend worden uitgevoerd door Staff Coordinatoren en Lead Coordinatoren.</p></div><div class="rule-info"><strong>Toelichting</strong><p>Andere staffleden hebben hiervoor geen bevoegdheid.</p></div><details class="rule-details" open><summary>Werkwijze en voorbeelden</summary><ul><li>Gebruik bevoegdheden alleen wanneer ze nodig zijn voor een staffzaak of duidelijke serverveiligheid.</li><li>Leg je beslissing kort uit en zorg dat betrokken spelers begrijpen wat er gebeurt.</li><li>Bij belangenverstrengeling draag je de zaak direct over aan een andere staffer.</li></ul></details></article>
+<article class="rule-card" data-search-card data-type="Bevoegdheid"><header class="rule-top"><div><span class="rule-number">Regel 16</span><span class="rule-type">Bevoegdheid</span></div><span class="rule-priority">Zeer hoog</span></header><h3>Gedrag tijdens staffdienst</h3><div class="rule-body"><strong>Kernregel</strong><p>Tijdens staffdienst is het verboden om actief deel te nemen aan roleplayscenario's of rond te rijden in de stad.</p></div><div class="rule-info"><strong>Toelichting</strong><p>Je focus moet volledig liggen op het helpen van spelers en het afhandelen van tickets.</p></div><details class="rule-details" open><summary>Werkwijze en voorbeelden</summary><ul><li>Gebruik bevoegdheden alleen wanneer ze nodig zijn voor een staffzaak of duidelijke serverveiligheid.</li><li>Leg je beslissing kort uit en zorg dat betrokken spelers begrijpen wat er gebeurt.</li><li>Bij belangenverstrengeling draag je de zaak direct over aan een andere staffer.</li></ul></details></article>
+<article class="rule-card" data-search-card data-type="Bevoegdheid"><header class="rule-top"><div><span class="rule-number">Regel 17</span><span class="rule-type">Bevoegdheid</span></div><span class="rule-priority">Zeer hoog</span></header><h3>Behandeling van staffzaken</h3><div class="rule-body"><strong>Kernregel</strong><p>Tijdens een staffzaak dien je altijd respectvol en professioneel te communiceren.</p></div><div class="rule-info"><strong>Toelichting</strong><p>Vraag waar nodig om clips, screenshots of ander bewijsmateriaal.</p></div><details class="rule-details" open><summary>Werkwijze en voorbeelden</summary><ul><li>Gebruik bevoegdheden alleen wanneer ze nodig zijn voor een staffzaak of duidelijke serverveiligheid.</li><li>Leg je beslissing kort uit en zorg dat betrokken spelers begrijpen wat er gebeurt.</li><li>Bij belangenverstrengeling draag je de zaak direct over aan een andere staffer.</li></ul></details></article>
+<article class="rule-card" data-search-card data-type="Bevoegdheid"><header class="rule-top"><div><span class="rule-number">Regel 18</span><span class="rule-type">Bevoegdheid</span></div><span class="rule-priority">Zeer hoog</span></header><h3>Refunds via tickets</h3><div class="rule-body"><strong>Kernregel</strong><p>Refunds worden uitsluitend behandeld via een officieel refundticket.</p></div><div class="rule-info"><strong>Toelichting</strong><p>Staffleden mogen geen vergoedingen uitdelen zonder dat hiervoor eerst een refundticket is aangemaakt.</p></div><details class="rule-details" open><summary>Werkwijze en voorbeelden</summary><ul><li>Controleer altijd of er een officieel refundticket bestaat.</li><li>Vraag bewijs voordat er een vergoeding wordt toegekend.</li><li>Laat twijfelgevallen behandelen door staffleden met de juiste refundbevoegdheid.</li></ul></details></article>
+<article class="rule-card" data-search-card data-type="Bevoegdheid"><header class="rule-top"><div><span class="rule-number">Regel 18.1</span><span class="rule-type">Bevoegdheid</span></div><span class="rule-priority">Zeer hoog</span></header><h3>Refund Rol</h3><div class="rule-body"><strong>Kernregel</strong><p>Alleen staffleden met de Refund Rol zijn bevoegd om refundverzoeken te beoordelen en te beslissen of een vergoeding wordt toegekend.</p></div><div class="rule-info"><strong>Toelichting</strong><p>Dit zorgt voor een duidelijke, consistente en controleerbare afhandeling van alle refundaanvragen.</p></div><details class="rule-details" open><summary>Werkwijze en voorbeelden</summary><ul><li>Controleer altijd of er een officieel refundticket bestaat.</li><li>Vraag bewijs voordat er een vergoeding wordt toegekend.</li><li>Laat twijfelgevallen behandelen door staffleden met de juiste refundbevoegdheid.</li></ul></details></article></div></section>
+<section class="rules-section" id="professionaliteit" data-section><header class="section-heading"><span>03</span><div><p>Gedrag</p><h2>Professionaliteit</h2></div></header><div class="rules-grid"><article class="rule-card" data-search-card data-type="Gedrag"><header class="rule-top"><div><span class="rule-number">Regel 19</span><span class="rule-type">Gedrag</span></div><span class="rule-priority">Hoog</span></header><h3>Professioneel gedrag</h3><div class="rule-body"><strong>Kernregel</strong><p>Staffleden dienen zich respectvol en professioneel te gedragen op Discord, in-game en op sociale media.</p></div><div class="rule-info"><strong>Toelichting</strong><p>Toxic gedrag, provoceren of het zwartmaken van de server is niet toegestaan.</p></div><details class="rule-details" open><summary>Werkwijze en voorbeelden</summary><ul><li>Blijf rustig, ook als een speler boos of provocerend reageert.</li><li>Gebruik duidelijke taal, geen dreigende toon en geen discussie om gelijk te halen.</li><li>Sluit een zaak pas af wanneer de beslissing helder is voor alle betrokkenen.</li></ul></details></article>
+<article class="rule-card" data-search-card data-type="Gedrag"><header class="rule-top"><div><span class="rule-number">Regel 20</span><span class="rule-type">Gedrag</span></div><span class="rule-priority">Hoog</span></header><h3>Misbruik van staffinformatie</h3><div class="rule-body"><strong>Kernregel</strong><p>Informatie verkregen via staffwerkzaamheden mag niet worden gebruikt voor persoonlijk voordeel.</p></div><div class="rule-info"><strong>Toelichting</strong><p>Hieronder valt ook het doorspelen van informatie aan vrienden of gangleden.</p></div><details class="rule-details" open><summary>Werkwijze en voorbeelden</summary><ul><li>Blijf rustig, ook als een speler boos of provocerend reageert.</li><li>Gebruik duidelijke taal, geen dreigende toon en geen discussie om gelijk te halen.</li><li>Sluit een zaak pas af wanneer de beslissing helder is voor alle betrokkenen.</li></ul></details></article>
+<article class="rule-card" data-search-card data-type="Gedrag"><header class="rule-top"><div><span class="rule-number">Regel 21</span><span class="rule-type">Gedrag</span></div><span class="rule-priority">Hoog</span></header><h3>Favoritisme</h3><div class="rule-body"><strong>Kernregel</strong><p>Het bevoordelen van vrienden, kennissen of gangleden is niet toegestaan.</p></div><div class="rule-info"><strong>Toelichting</strong><p>Iedere speler moet gelijk behandeld worden ongeacht persoonlijke banden.</p></div><details class="rule-details" open><summary>Werkwijze en voorbeelden</summary><ul><li>Blijf rustig, ook als een speler boos of provocerend reageert.</li><li>Gebruik duidelijke taal, geen dreigende toon en geen discussie om gelijk te halen.</li><li>Sluit een zaak pas af wanneer de beslissing helder is voor alle betrokkenen.</li></ul></details></article>
+<article class="rule-card" data-search-card data-type="Gedrag"><header class="rule-top"><div><span class="rule-number">Regel 22</span><span class="rule-type">Gedrag</span></div><span class="rule-priority">Hoog</span></header><h3>Objectiviteit</h3><div class="rule-body"><strong>Kernregel</strong><p>Staffzaken moeten altijd neutraal en objectief worden behandeld.</p></div><div class="rule-info"><strong>Toelichting</strong><p>Persoonlijke meningen mogen geen invloed hebben op een beslissing.</p></div><details class="rule-details" open><summary>Werkwijze en voorbeelden</summary><ul><li>Blijf rustig, ook als een speler boos of provocerend reageert.</li><li>Gebruik duidelijke taal, geen dreigende toon en geen discussie om gelijk te halen.</li><li>Sluit een zaak pas af wanneer de beslissing helder is voor alle betrokkenen.</li></ul></details></article>
+<article class="rule-card" data-search-card data-type="Gedrag"><header class="rule-top"><div><span class="rule-number">Regel 23</span><span class="rule-type">Gedrag</span></div><span class="rule-priority">Hoog</span></header><h3>Conflicten binnen het staffteam</h3><div class="rule-body"><strong>Kernregel</strong><p>Conflicten, ruzies of onprofessionele discussies met medestaffleden zijn niet toegestaan. Problemen dienen volwassen en via de juiste leidinggevende opgelost te worden.</p></div><div class="rule-info"><strong>Toelichting</strong><p>Conflicten die de werksfeer of samenwerking binnen het staffteam negatief beinvloeden leiden direct tot een dubbele demote.</p></div><details class="rule-details" open><summary>Werkwijze en voorbeelden</summary><ul><li>Blijf rustig, ook als een speler boos of provocerend reageert.</li><li>Gebruik duidelijke taal, geen dreigende toon en geen discussie om gelijk te halen.</li><li>Sluit een zaak pas af wanneer de beslissing helder is voor alle betrokkenen.</li></ul></details></article></div></section>
+<section class="rules-section" id="activiteit" data-section><header class="section-heading"><span>04</span><div><p>Aanwezigheid</p><h2>Activiteit</h2></div></header><div class="rules-grid"><article class="rule-card" data-search-card data-type="Aanwezigheid"><header class="rule-top"><div><span class="rule-number">Regel 24</span><span class="rule-type">Aanwezigheid</span></div><span class="rule-priority">Normaal</span></header><h3>Activiteitseis</h3><div class="rule-body"><strong>Kernregel</strong><p>Staffleden worden geacht actief aanwezig te zijn binnen het staffteam.</p></div><div class="rule-info"><strong>Toelichting</strong><p>Langdurige inactiviteit zonder melding kan leiden tot degradatie of ontslag.</p></div><details class="rule-details" open><summary>Werkwijze en voorbeelden</summary><ul><li>Activiteit betekent niet alleen online zijn, maar ook zichtbaar bijdragen aan tickets, support en orde.</li><li>Meld afwezigheid op tijd zodat planning en bezetting niet onverwacht wegvallen.</li><li>Structurele inactiviteit zonder communicatie kan gevolgen hebben voor je functie.</li></ul></details></article>
+<article class="rule-card" data-search-card data-type="Aanwezigheid"><header class="rule-top"><div><span class="rule-number">Regel 25</span><span class="rule-type">Aanwezigheid</span></div><span class="rule-priority">Normaal</span></header><h3>Afwezigheid melden</h3><div class="rule-body"><strong>Kernregel</strong><p>Bij afwezigheid van meerdere dagen dient dit gemeld te worden bij een leidinggevende.</p></div><div class="rule-info"><strong>Toelichting</strong><p>Hierdoor blijft de bezetting van het staffteam overzichtelijk.</p></div><details class="rule-details" open><summary>Werkwijze en voorbeelden</summary><ul><li>Activiteit betekent niet alleen online zijn, maar ook zichtbaar bijdragen aan tickets, support en orde.</li><li>Meld afwezigheid op tijd zodat planning en bezetting niet onverwacht wegvallen.</li><li>Structurele inactiviteit zonder communicatie kan gevolgen hebben voor je functie.</li></ul></details></article>
+<article class="rule-card" data-search-card data-type="Aanwezigheid"><header class="rule-top"><div><span class="rule-number">Regel 26</span><span class="rule-type">Aanwezigheid</span></div><span class="rule-priority">Normaal</span></header><h3>AFK tijdens staffdienst</h3><div class="rule-body"><strong>Kernregel</strong><p>Langdurig AFK staan tijdens staffdienst zonder geldige reden is niet toegestaan.</p></div><div class="rule-info"><strong>Toelichting</strong><p>Staffdienst is bedoeld om spelers actief te ondersteunen.</p></div><details class="rule-details" open><summary>Werkwijze en voorbeelden</summary><ul><li>Activiteit betekent niet alleen online zijn, maar ook zichtbaar bijdragen aan tickets, support en orde.</li><li>Meld afwezigheid op tijd zodat planning en bezetting niet onverwacht wegvallen.</li><li>Structurele inactiviteit zonder communicatie kan gevolgen hebben voor je functie.</li></ul></details></article></div></section>
+<section class="rules-section" id="bewijsmateriaal" data-section><header class="section-heading"><span>05</span><div><p>Bewijs</p><h2>Bewijsmateriaal</h2></div></header><div class="rules-grid"><article class="rule-card" data-search-card data-type="Bewijs"><header class="rule-top"><div><span class="rule-number">Regel 27</span><span class="rule-type">Bewijs</span></div><span class="rule-priority">Hoog</span></header><h3>Bewijs bewaren</h3><div class="rule-body"><strong>Kernregel</strong><p>Bij zware sancties zoals langdurige bans, blacklists of ontslagen dient voldoende bewijs bewaard te worden.</p></div><div class="rule-info"><strong>Toelichting</strong><p>Dit bewijs moet beschikbaar zijn voor eventuele beroepsprocedures.</p></div><details class="rule-details" open><summary>Werkwijze en voorbeelden</summary><ul><li>Noteer datum, betrokken personen en reden van de sanctie.</li><li>Gebruik clips/screenshots waar mogelijk.</li><li>Bewijs hoort beschikbaar te blijven voor controle achteraf.</li></ul></details></article>
+<article class="rule-card" data-search-card data-type="Bewijs"><header class="rule-top"><div><span class="rule-number">Regel 28</span><span class="rule-type">Bewijs</span></div><span class="rule-priority">Hoog</span></header><h3>Onderzoeksplicht</h3><div class="rule-body"><strong>Kernregel</strong><p>Voordat een zware sanctie wordt uitgedeeld dient voldoende onderzoek plaats te vinden.</p></div><div class="rule-info"><strong>Toelichting</strong><p>Sancties mogen nooit gebaseerd zijn op aannames.</p></div><details class="rule-details" open><summary>Werkwijze en voorbeelden</summary><ul><li>Bewijs moet herleidbaar zijn: clips, screenshots, logs of duidelijke verklaringen.</li><li>Bewaar bewijs bij zware sancties zodat een beroep of hercontrole eerlijk kan verlopen.</li><li>Geen bewijs betekent niet automatisch geen actie, maar wel dat je extra zorgvuldig moet onderzoeken.</li></ul></details></article></div></section>
+<section class="rules-section" id="corruptie-misbruik" data-section><header class="section-heading"><span>06</span><div><p>Integriteit</p><h2>Corruptie &amp; misbruik</h2></div></header><div class="rules-grid"><article class="rule-card" data-search-card data-type="Integriteit"><header class="rule-top"><div><span class="rule-number">Regel 29</span><span class="rule-type">Integriteit</span></div><span class="rule-priority">Kritiek</span></header><h3>Omkoping</h3><div class="rule-body"><strong>Kernregel</strong><p>Het aannemen van geld, voertuigen, goederen of andere voordelen in ruil voor staffhulp is verboden.</p></div><div class="rule-info"><strong>Toelichting</strong><p>Dit wordt gezien als corruptie en leidt doorgaans tot ontslag.</p></div><details class="rule-details" open><summary>Werkwijze en voorbeelden</summary><ul><li>Voordelen aannemen of geven vanuit je staffpositie tast vertrouwen direct aan.</li><li>Alles wat lijkt op vriendjespolitiek, omkoping of machtsmisbruik moet worden gemeld.</li><li>Bij ernstige integriteitsschendingen kan direct ontslag of blacklist volgen.</li></ul></details></article>
+<article class="rule-card" data-search-card data-type="Integriteit"><header class="rule-top"><div><span class="rule-number">Regel 30</span><span class="rule-type">Integriteit</span></div><span class="rule-priority">Kritiek</span></header><h3>Misbruik van bevoegdheden</h3><div class="rule-body"><strong>Kernregel</strong><p>Staffbevoegdheden mogen uitsluitend worden gebruikt voor staffdoeleinden.</p></div><div class="rule-info"><strong>Toelichting</strong><p>Elk ander gebruik wordt beschouwd als staffmisbruik.</p></div><details class="rule-details" open><summary>Werkwijze en voorbeelden</summary><ul><li>Voordelen aannemen of geven vanuit je staffpositie tast vertrouwen direct aan.</li><li>Alles wat lijkt op vriendjespolitiek, omkoping of machtsmisbruik moet worden gemeld.</li><li>Bij ernstige integriteitsschendingen kan direct ontslag of blacklist volgen.</li></ul></details></article></div></section>
+<section class="rules-section" id="extra-regels" data-section><header class="section-heading"><span>07</span><div><p>Aanvullend</p><h2>Extra regels</h2></div></header><div class="rules-grid"><article class="rule-card" data-search-card data-type="Aanvullend"><header class="rule-top"><div><span class="rule-number">Regel 31</span><span class="rule-type">Aanvullend</span></div><span class="rule-priority">Normaal</span></header><h3>Crosshairs</h3><div class="rule-body"><strong>Kernregel</strong><p>Crosshairs zijn toegestaan binnen Amsterdam Roleplay.</p></div><div class="rule-info"><strong>Toelichting</strong><p>Mits deze geen verboden functies bevatten.</p></div><details class="rule-details" open><summary>Werkwijze en voorbeelden</summary><ul><li>Aanvullende regels zijn even bindend als de hoofdregels.</li><li>Wanneer een systeem of permissie misbruikt kan worden, gebruik je het alleen voor het bedoelde doel.</li><li>Nieuwe afspraken vanuit beheer kunnen later aan deze sectie worden toegevoegd.</li></ul></details></article>
+<article class="rule-card" data-search-card data-type="Aanvullend"><header class="rule-top"><div><span class="rule-number">Regel 32</span><span class="rule-type">Aanvullend</span></div><span class="rule-priority">Normaal</span></header><h3>Vragen om promoties</h3><div class="rule-body"><strong>Kernregel</strong><p>Het vragen om promoties is niet toegestaan.</p></div><div class="rule-info"><strong>Toelichting</strong><p>Dit zal leiden tot een staffwarn.</p></div><details class="rule-details" open><summary>Werkwijze en voorbeelden</summary><ul><li>Aanvullende regels zijn even bindend als de hoofdregels.</li><li>Wanneer een systeem of permissie misbruikt kan worden, gebruik je het alleen voor het bedoelde doel.</li><li>Nieuwe afspraken vanuit beheer kunnen later aan deze sectie worden toegevoegd.</li></ul></details></article>
+<article class="rule-card" data-search-card data-type="Aanvullend"><header class="rule-top"><div><span class="rule-number">Regel 33</span><span class="rule-type">Aanvullend</span></div><span class="rule-priority">Normaal</span></header><h3>AMRP-tag</h3><div class="rule-body"><strong>Kernregel</strong><p>Iedereen dient AMRP voor zijn of haar naam te hebben in-game.</p></div><div class="rule-info"><strong>Toelichting</strong><p>Uitzondering geldt voor het Beheer Team.</p></div><details class="rule-details" open><summary>Werkwijze en voorbeelden</summary><ul><li>Aanvullende regels zijn even bindend als de hoofdregels.</li><li>Wanneer een systeem of permissie misbruikt kan worden, gebruik je het alleen voor het bedoelde doel.</li><li>Nieuwe afspraken vanuit beheer kunnen later aan deze sectie worden toegevoegd.</li></ul></details></article>
+<article class="rule-card" data-search-card data-type="Aanvullend"><header class="rule-top"><div><span class="rule-number">Regel 34</span><span class="rule-type">Aanvullend</span></div><span class="rule-priority">Normaal</span></header><h3>TX-voertuigen</h3><div class="rule-body"><strong>Kernregel</strong><p>Het inspawnen van voertuigen via /tx is niet toegestaan.</p></div><div class="rule-info"><strong>Toelichting</strong><p>Alleen toegestane systemen mogen hiervoor worden gebruikt.</p></div><details class="rule-details" open><summary>Werkwijze en voorbeelden</summary><ul><li>Aanvullende regels zijn even bindend als de hoofdregels.</li><li>Wanneer een systeem of permissie misbruikt kan worden, gebruik je het alleen voor het bedoelde doel.</li><li>Nieuwe afspraken vanuit beheer kunnen later aan deze sectie worden toegevoegd.</li></ul></details></article>
+<article class="rule-card" data-search-card data-type="Aanvullend"><header class="rule-top"><div><span class="rule-number">Regel 35</span><span class="rule-type">Aanvullend</span></div><span class="rule-priority">Normaal</span></header><h3>TX-permissies</h3><div class="rule-body"><strong>Kernregel</strong><p>Het gebruiken van TX-permissies buiten staffdienst is verboden.</p></div><div class="rule-info"><strong>Toelichting</strong><p>Dit wordt gezien als misbruik van bevoegdheden.</p></div><details class="rule-details" open><summary>Werkwijze en voorbeelden</summary><ul><li>Aanvullende regels zijn even bindend als de hoofdregels.</li><li>Wanneer een systeem of permissie misbruikt kan worden, gebruik je het alleen voor het bedoelde doel.</li><li>Nieuwe afspraken vanuit beheer kunnen later aan deze sectie worden toegevoegd.</li></ul></details></article>
+<article class="rule-card" data-search-card data-type="Aanvullend"><header class="rule-top"><div><span class="rule-number">Regel 36</span><span class="rule-type">Aanvullend</span></div><span class="rule-priority">Normaal</span></header><h3>Promoties uitdelen</h3><div class="rule-body"><strong>Kernregel</strong><p>Promoties mogen uitsluitend worden gegeven door Beheer of met toestemming van Beheer.</p></div><div class="rule-info"><strong>Toelichting</strong><p>Andere promoties zijn ongeldig.</p></div><details class="rule-details" open><summary>Werkwijze en voorbeelden</summary><ul><li>Aanvullende regels zijn even bindend als de hoofdregels.</li><li>Wanneer een systeem of permissie misbruikt kan worden, gebruik je het alleen voor het bedoelde doel.</li><li>Nieuwe afspraken vanuit beheer kunnen later aan deze sectie worden toegevoegd.</li></ul></details></article>
+<article class="rule-card" data-search-card data-type="Aanvullend"><header class="rule-top"><div><span class="rule-number">Regel 37</span><span class="rule-type">Aanvullend</span></div><span class="rule-priority">Normaal</span></header><h3>Anticheat-testers</h3><div class="rule-body"><strong>Kernregel</strong><p>Er bestaan geen officiele anticheat-testers binnen Amsterdam Roleplay.</p></div><div class="rule-info"><strong>Toelichting</strong><p>Personen die zich voordoen als anticheat-tester dienen alsnog bestraft te worden volgens de regels.</p></div><details class="rule-details" open><summary>Werkwijze en voorbeelden</summary><ul><li>Meld vermoedens direct aan hogere staff of beheer.</li><li>Deel geen gevoelige informatie met spelers of buitenstaanders.</li><li>Bewijs en logs moeten zorgvuldig bewaard blijven.</li></ul></details></article>
+<article class="rule-card" data-search-card data-type="Aanvullend"><header class="rule-top"><div><span class="rule-number">Regel 38</span><span class="rule-type">Aanvullend</span></div><span class="rule-priority">Normaal</span></header><h3>Schelden met ziektes</h3><div class="rule-body"><strong>Kernregel</strong><p>Schelden met ziektes is niet toegestaan.</p></div><div class="rule-info"><strong>Toelichting</strong><p>Dit leidt per direct tot ontslag uit het staffteam.</p></div><details class="rule-details" open><summary>Werkwijze en voorbeelden</summary><ul><li>Aanvullende regels zijn even bindend als de hoofdregels.</li><li>Wanneer een systeem of permissie misbruikt kan worden, gebruik je het alleen voor het bedoelde doel.</li><li>Nieuwe afspraken vanuit beheer kunnen later aan deze sectie worden toegevoegd.</li></ul></details></article></div></section>
+<section class="rules-section" id="staff-sanctiebeleid" data-section><header class="section-heading"><span>08</span><div><p>Sanctiebeleid</p><h2>Staff sanctiebeleid</h2></div></header><div class="policy-grid"><article class="policy-card" data-search-card data-type="Sanctiebeleid"><div class="policy-kicker">Sanctiebeleid</div><h3>Standaard staffsancties</h3><ul><li>W1 = Waarschuwing</li><li>W2 = Demote / rangverlaging</li><li>W3 = Ontslag uit het staffteam</li></ul></article>
+<article class="policy-card" data-search-card data-type="Sanctiebeleid"><div class="policy-kicker">Sanctiebeleid</div><h3>Belangrijke informatie</h3><ul><li>Sancties kunnen worden overgeslagen afhankelijk van de ernst van de overtreding.</li><li>Ernstige overtredingen kunnen direct leiden tot W3 / ontslag zonder voorafgaande waarschuwingen.</li><li>Staffwarns, demotes en ontslagen mogen uitsluitend worden uitgedeeld door Staff Coordinatoren en Lead Coordinatoren.</li></ul></article>
+<article class="policy-card" data-search-card data-type="Sanctiebeleid"><div class="policy-kicker">Sanctiebeleid</div><h3>W1 - Waarschuwing</h3><ul><li>Discord-link niet in bio/status hebben.</li><li>Vragen om promoties.</li><li>Langdurig AFK tijdens staffdienst.</li><li>Niet melden van afwezigheid.</li><li>Onprofessioneel gedrag van lichte aard.</li><li>Eerste lichte overtreding van staffregels.</li></ul></article>
+<article class="policy-card" data-search-card data-type="Sanctiebeleid"><div class="policy-kicker">Sanctiebeleid</div><h3>W2 - Demote</h3><ul><li>Herhaaldelijke W1-overtredingen.</li><li>Onvoldoende activiteit binnen het staffteam.</li><li>Onjuist behandelen van staffzaken.</li><li>Niet objectief handelen in staffzaken.</li><li>Herhaaldelijk niet naleven van staffprocedures.</li><li>Onjuist behandelen van refunds.</li><li>Refunds uitdelen zonder officieel ticket.</li><li>Beslissingen nemen in zaken waarbij sprake is van belangenverstrengeling.</li></ul></article>
+<article class="policy-card" data-search-card data-type="Sanctiebeleid"><div class="policy-kicker">Sanctiebeleid</div><h3>W3 - Ontslag</h3><ul><li>Staff zijn op andere roleplayservers.</li><li>Bezitten of promoten van een andere roleplayserver.</li><li>Gebruik, bezit of promotie van cheats/externe software.</li><li>Lekken van persoonsgegevens of vertrouwelijke informatie.</li><li>Staffabuse.</li><li>Corruptie of omkoping.</li><li>Misbruik van staffbevoegdheden.</li><li>Misbruik van staffinformatie.</li><li>Favoritisme met ernstige gevolgen.</li><li>Schade toebrengen aan Amsterdam Roleplay of haar reputatie.</li><li>Schelden met ziektes.</li><li>Ernstige APV-overtredingen.</li><li>Herhaaldelijke W2-overtredingen.</li><li>Ernstige belangenverstrengeling.</li><li>Bewust eigen staffzaken behandelen.</li><li>Refunds misbruiken voor persoonlijk voordeel of voor vrienden/gangleden.</li></ul></article></div></section>
+<section class="rules-section" id="staff-blacklist" data-section><header class="section-heading"><span>09</span><div><p>Blacklist</p><h2>Staff blacklist</h2></div></header><div class="policy-grid"><article class="policy-card" data-search-card data-type="Blacklist"><div class="policy-kicker">Blacklist</div><h3>Belangrijke punten</h3><ul><li>Cheats of exploitsoftware.</li><li>Ernstige staffabuse.</li><li>Corruptie of omkoping.</li><li>Ernstige schade aan de community.</li><li>Lekken van persoonsgegevens of vertrouwelijke informatie.</li><li>Ernstig misbruik van refunds.</li><li>Ernstige belangenverstrengeling.</li></ul></article></div></section></section>
+  </main>
+  <button class="back-top" type="button" data-back-top aria-label="Terug naar boven">TOP</button>
+  <footer class="portal-footer"><div class="container footer-row"><span>Amsterdam Roleplay Staff Portaal</span><span>Uitgebreide staffregels en sanctiebeleid.</span></div></footer>
   <script src="staff.js"></script>
 </body>
 </html>

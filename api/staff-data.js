@@ -88,8 +88,9 @@ async function discordGet(pathname, config) {
 }
 
 function roleColor(role) {
-  if (!role || !role.color) return "#36b8d0";
-  return `#${Number(role.color).toString(16).padStart(6, "0")}`;
+  const colorValue = role?.colors?.primary_color ?? role?.color ?? 0;
+  if (!colorValue) return "#36b8d0";
+  return `#${Number(colorValue).toString(16).padStart(6, "0")}`;
 }
 
 async function getGuildRoles(config) {
