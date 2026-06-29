@@ -52,8 +52,8 @@ function getConfig() {
       { key: "staff", title: "Staff Team", roleId: process.env.STAFF_TEAM_ROLE_STAFF || "1518271385921917178" },
       { key: "hogerop", title: "Hogerop Team", roleId: process.env.STAFF_TEAM_ROLE_HOGEROP || "1502448648930459792" },
       { key: "bestuur", title: "Bestuur Team", roleId: process.env.STAFF_TEAM_ROLE_BESTUUR || "1502448643041661088" },
-      { key: "beheer", title: "Beheer+", roleId: process.env.STAFF_TEAM_ROLE_BEHEER || "1502448635709751457" },
-      { key: "eigenaar", title: "Eigenaar", roleId: process.env.STAFF_TEAM_ROLE_EIGENAAR || "1502448623252930601" },
+      { key: "beheer", title: "Beheer Team", roleId: process.env.STAFF_TEAM_ROLE_BEHEER || "1502448635709751457" },
+      { key: "eigenaar", title: "Beheer+ Team", roleId: process.env.STAFF_TEAM_ROLE_EIGENAAR || "1502448623252930601" },
     ],
   };
 }
