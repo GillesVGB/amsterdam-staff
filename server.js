@@ -95,30 +95,44 @@ async function serveStatic(req, res, pathname = null) {
 
 function createServer() {
   return http.createServer(async (req, res) => {
-    const url = new URL(req.url, `http://${req.headers.host || "localhost"}`);
+    try {
+      const url = new URL(req.url, `http://${req.headers.host || "localhost"}`);
 
-    if (url.pathname.startsWith("/api/staff/auth/")) {
-      if (await staffAuth.handle(req, res, url)) return;
+      if (url.pathname === "/health") {
+        sendText(res, 200, "OK");
+        return;
+      }
+
+      if (url.pathname.startsWith("/api/staff/auth/")) {
+        if (await staffAuth.handle(req, res, url)) return;
+      }
+
+      if (url.pathname.startsWith("/api/staff/")) {
+        await staffData.handle(req, res, url);
+        return;
+      }
+
+      if (url.pathname === "/" || url.pathname === "/staff") {
+        redirect(res, "/staff/");
+        return;
+      }
+
+      if (url.pathname.startsWith("/staff/")) {
+        if (!staffAuth.requireStaffAccess(req, res, url)) return;
+        const staffPath = url.pathname.replace(/^\/staff/, "") || "/";
+        await serveStatic(req, res, staffPath);
+        return;
+      }
+
+      sendText(res, 404, "Not found");
+    } catch (error) {
+      console.error("Request error:", error);
+      if (!res.headersSent) {
+        sendText(res, 500, "Interne serverfout. Controleer de logs.");
+      } else {
+        res.end();
+      }
     }
-
-    if (url.pathname.startsWith("/api/staff/")) {
-      await staffData.handle(req, res, url);
-      return;
-    }
-
-    if (url.pathname === "/" || url.pathname === "/staff") {
-      redirect(res, "/staff/");
-      return;
-    }
-
-    if (url.pathname.startsWith("/staff/")) {
-      if (!staffAuth.requireStaffAccess(req, res, url)) return;
-      const staffPath = url.pathname.replace(/^\/staff/, "") || "/";
-      await serveStatic(req, res, staffPath);
-      return;
-    }
-
-    sendText(res, 404, "Not found");
   });
 }
 
