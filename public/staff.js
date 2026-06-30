@@ -196,6 +196,75 @@ function setLiveBadge(data) {
   badge.textContent = "Live van Discord - bijgewerkt " + formatDate(data.updatedAt);
 }
 
+function teamRoleChip(group) {
+  const chip = document.createElement("div");
+  chip.className = "team-role-pill";
+  chip.style.setProperty("--team-color", group.role?.color || "#36b8d0");
+  chip.appendChild(textNode("span", "", group.role?.name || group.title || "Discord rol"));
+  chip.appendChild(textNode("code", "", group.role?.id || "Rol niet gevonden"));
+  return chip;
+}
+
+function teamMemberCard(member, accentColor) {
+  const card = document.createElement("article");
+  card.className = "team-member-card";
+  card.style.setProperty("--team-color", accentColor || "#36b8d0");
+
+  const avatarWrap = document.createElement("div");
+  avatarWrap.className = "team-member-avatar-wrap";
+  const avatar = document.createElement("img");
+  avatar.className = "team-member-avatar";
+  avatar.src = member.avatar || "https://cdn.discordapp.com/embed/avatars/0.png";
+  avatar.alt = "";
+  avatar.loading = "lazy";
+  avatarWrap.appendChild(avatar);
+  card.appendChild(avatarWrap);
+
+  const copy = document.createElement("div");
+  copy.className = "team-member-copy";
+  copy.appendChild(textNode("strong", "", member.name || "Onbekende staff"));
+  copy.appendChild(textNode("span", "", member.username ? "@" + member.username.replace(/^@/, "") : member.id || "Discord gebruiker"));
+  card.appendChild(copy);
+  return card;
+}
+
+function renderTeamGroup(group, index) {
+  const accentColor = group.role?.color || "#36b8d0";
+  const section = document.createElement("section");
+  section.className = "team-showcase-card";
+  section.style.setProperty("--team-color", accentColor);
+
+  const header = document.createElement("header");
+  header.className = "team-showcase-head";
+  const titleWrap = document.createElement("div");
+  titleWrap.className = "team-showcase-title";
+  titleWrap.appendChild(textNode("span", "team-showcase-index", String(index + 1).padStart(2, "0")));
+  const titleCopy = document.createElement("div");
+  titleCopy.appendChild(textNode("h3", "", group.title || "Team"));
+  titleCopy.appendChild(textNode("p", "", group.members.length ? "Live leden met deze Discord rol." : "Geen leden gevonden met deze rol."));
+  titleWrap.appendChild(titleCopy);
+  header.appendChild(titleWrap);
+
+  const meta = document.createElement("div");
+  meta.className = "team-showcase-meta";
+  meta.appendChild(textNode("strong", "", String(group.members.length)));
+  meta.appendChild(textNode("span", "", group.members.length === 1 ? "lid" : "leden"));
+  header.appendChild(meta);
+  section.appendChild(header);
+
+  section.appendChild(teamRoleChip(group));
+
+  const grid = document.createElement("div");
+  grid.className = "team-member-showcase";
+  if (!group.members.length) {
+    grid.appendChild(textNode("p", "staff-empty", "Nog niemand met deze Discord-rol op de server."));
+  } else {
+    group.members.forEach((member) => grid.appendChild(teamMemberCard(member, accentColor)));
+  }
+  section.appendChild(grid);
+  return section;
+}
+
 let staffDossierCache = [];
 
 async function initTeamPage() {
@@ -216,54 +285,25 @@ async function initTeamPage() {
     clearNode(root);
     setLiveBadge(data);
 
-    const card = document.createElement("div");
-    card.className = "staff-card";
-    const title = document.createElement("div");
-    title.className = "staff-card-title";
-    title.appendChild(textNode("span", "staff-card-icon", "*"));
-    title.appendChild(document.createTextNode("Teamoverzicht"));
-    card.appendChild(title);
-
-    data.groups.forEach((group) => {
-      const block = document.createElement("section");
-      block.className = "staff-rank-block";
-      const head = document.createElement("div");
-      head.className = "staff-rank-head";
-      const dot = document.createElement("span");
-      dot.className = "staff-rank-dot";
-      dot.style.background = group.role?.color || "#36b8d0";
-      head.appendChild(dot);
-      head.appendChild(textNode("h3", "", group.title));
-      head.appendChild(textNode("span", "staff-rank-meta", String(group.members.length) + " leden"));
-      block.appendChild(head);
-
-      if (!group.members.length) {
-        block.appendChild(textNode("p", "staff-empty", "Nog niemand met deze Discord-rol op de server."));
-      } else {
-        const list = document.createElement("div");
-        list.className = "staff-member-grid";
-        group.members.forEach((member) => {
-          const memberCard = document.createElement("div");
-          memberCard.className = "staff-member";
-          const avatar = document.createElement("img");
-          avatar.className = "staff-member-avatar";
-          avatar.src = member.avatar;
-          avatar.alt = "";
-          memberCard.appendChild(avatar);
-          const copy = document.createElement("div");
-          copy.className = "staff-member-text";
-          copy.appendChild(document.createTextNode(member.name));
-          copy.appendChild(textNode("small", "", member.username ? "@" + member.username : member.id));
-          memberCard.appendChild(copy);
-          list.appendChild(memberCard);
-        });
-        block.appendChild(list);
-      }
-
-      card.appendChild(block);
+    const summary = document.createElement("div");
+    summary.className = "team-summary-strip";
+    const totalMembers = new Set(data.groups.flatMap((group) => group.members.map((member) => member.id))).size;
+    [
+      ["Teamgroepen", data.groups.length],
+      ["Unieke leden", totalMembers],
+      ["Live bron", "Discord"],
+    ].forEach(([label, value]) => {
+      const item = document.createElement("div");
+      item.appendChild(textNode("span", "", label));
+      item.appendChild(textNode("strong", "", String(value)));
+      summary.appendChild(item);
     });
+    root.appendChild(summary);
 
-    root.appendChild(card);
+    const grid = document.createElement("div");
+    grid.className = "team-showcase-grid";
+    data.groups.forEach((group, index) => grid.appendChild(renderTeamGroup(group, index)));
+    root.appendChild(grid);
   } catch (error) {
     renderNotice(root, "Team kon niet geladen worden", error.message || "Probeer opnieuw.");
   }
